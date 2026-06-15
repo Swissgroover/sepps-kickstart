@@ -18,7 +18,7 @@ export const Route = createFileRoute("/kontakt")({
 
 const people = [
   { name: "Merlyn Leiman", role: "ERASPORDIKOOL SEPPSi õppejuht", mail: "merlyn@sepps.eu", tel: "+372 56 28 7449" },
-  { name: "Madis Sepp", role: "Peatreener ja direktor", mail: "madis@sepps.eu", tel: "+372 53 36 3247" },
+  { name: "Madis Sepp", role: "Peatreener", mail: "madis@sepps.eu", tel: "+372 53 36 3247" },
   { name: "Kaiti Enno", role: "Infojuht", mail: "info@sepps.eu", tel: "+372 54 51 1800" },
   { name: "Oliver Moring", role: "Klienditoe- ja haldusspetsialist", mail: "sepps@sepps.eu", tel: "+372 53 00 6717" },
 ];

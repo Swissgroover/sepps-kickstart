@@ -52,11 +52,6 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
         <div className="flex flex-col gap-8">
-          <div className="hero-eyebrow inline-flex w-max items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pitch-pulse" />
-            Eesti jalgpalliklubi
-          </div>
-
           <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
             <span className="block overflow-hidden">
               <span className="hero-word inline-block">Mängi</span>
@@ -90,20 +85,6 @@ function Hero() {
             </Link>
           </div>
 
-          <div className="mt-2 flex flex-wrap items-end gap-x-10 gap-y-6 text-sm text-foreground/60">
-            <div className="hero-meta">
-              <div className="font-display text-4xl leading-none text-foreground">100+</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.2em]">mängijat</div>
-            </div>
-            <div className="hero-meta">
-              <div className="font-display text-4xl leading-none text-foreground">5x</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.2em]">nädalas trenni</div>
-            </div>
-            <div className="hero-meta">
-              <div className="font-display text-4xl leading-none text-foreground">1</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.2em]">klubi · 1 perekond</div>
-            </div>
-          </div>
         </div>
 
         <div className="relative mx-auto w-full min-w-0 max-w-xl lg:max-w-none">
@@ -218,9 +199,6 @@ function Index() {
   return (
     <div>
       <Hero />
-      <Marquee
-        items={["JK SEPPS", "Eesti", "Football Club", "Since 2020", "Pall · Kirg · Perekond"]}
-      />
       <FeatureCards />
       <AboutTeaser />
     </div>

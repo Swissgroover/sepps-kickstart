@@ -79,7 +79,7 @@ function RegistreeruPage() {
                   Registreeru trenni <Mail size={16} />
                 </a>
                 <ul className="mt-8 space-y-2 text-sm text-foreground/70">
-                  {["Tasuta proovitrenn", "Kõik vanusegrupid", "Kogenud treenerid"].map((x) => (
+                  {["Tasuta proovitrenn", "2014-2017 vanusegrupid", "Kogenud treenerid"].map((x) => (
                     <li key={x} className="flex items-center gap-2">
                       <Check size={14} className="text-primary" /> {x}
                     </li>

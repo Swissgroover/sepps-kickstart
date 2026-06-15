@@ -66,12 +66,12 @@ function KlubiPage() {
               <div className="absolute inset-0 text-primary/30"><PitchBackground /></div>
               <div className="relative flex h-full flex-col justify-end">
                 <div className="font-display text-7xl uppercase leading-none">Madis<br />Sepp</div>
-                <div className="mt-3 text-sm uppercase tracking-[0.2em] text-foreground/60">Peatreener · direktor</div>
+                <div className="mt-3 text-sm uppercase tracking-[0.2em] text-foreground/60">Peatreener</div>
               </div>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <SectionHeading eyebrow="Peatreener" title={<>Mees, kes klubi <span className="text-primary">ehitas.</span></>}>
+            <SectionHeading eyebrow="Peatreener" title={<>Treener, klubi edu <span className="text-primary">taga.</span></>}>
               Madis Sepp juhib JK SEPPSi ja ERASPORDIKOOL SEPPSi. Treenerina paneb ta
               rõhku tehnikale, distsipliinile ja sellele, et mängija lahkuks väljakult
               parema inimesena, kui ta saabus.
