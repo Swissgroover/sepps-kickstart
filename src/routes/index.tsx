@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Hero() {
-  const ref = useGsap<HTMLDivElement>(({ gsap }) => {
+  const ref = useGsap<HTMLDivElement>(({ gsap, scope }) => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
     tl.from(".hero-eyebrow", { autoAlpha: 0, y: 12, duration: 0.6 })
       .from(".hero-word", { yPercent: 110, autoAlpha: 0, duration: 1, stagger: 0.12 }, "-=0.2")
@@ -31,7 +31,7 @@ function Hero() {
     gsap.to(".hero-pitch", {
       yPercent: 8,
       ease: "none",
-      scrollTrigger: { trigger: ".hero-root", start: "top top", end: "bottom top", scrub: true },
+      scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true },
     });
   }, []);
 
