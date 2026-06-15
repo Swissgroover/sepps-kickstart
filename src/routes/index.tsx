@@ -50,7 +50,7 @@ function Hero() {
             Eesti jalgpalliklubi
           </div>
 
-          <h1 className="font-display text-[clamp(3.5rem,11vw,9rem)] uppercase leading-[0.85] tracking-tight">
+          <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-[0.85] tracking-tight">
             <span className="block overflow-hidden">
               <span className="hero-word inline-block">Mängi</span>
             </span>
