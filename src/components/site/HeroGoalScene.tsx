@@ -5,14 +5,17 @@ export function HeroGoalScene() {
     const q = gsap.utils.selector(scope);
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Goal frame: scale in from crossbar down. Uses .from() so elements stay
-    // in final visible state if GSAP never runs.
-    tl.from(q(".frame-line"), {
-      scaleY: 0,
-      transformOrigin: "50% 0%",
+    // Goal frame: draw in via stroke-dashoffset (works reliably on <line>).
+    q(".frame-line").forEach((el) => {
+      const ln = el as unknown as SVGLineElement & { getTotalLength?: () => number };
+      const len = typeof ln.getTotalLength === "function" ? ln.getTotalLength() : 600;
+      gsap.set(ln, { strokeDasharray: len + 2, strokeDashoffset: len + 2 });
+    });
+    tl.to(q(".frame-line"), {
+      strokeDashoffset: 0,
       duration: 0.7,
       stagger: 0.05,
-      ease: "power3.out",
+      ease: "power2.inOut",
     });
 
     // Net fades in
@@ -40,15 +43,13 @@ export function HeroGoalScene() {
       "-=0.05",
     );
 
-    // Net ripple
-    tl.fromTo(
+    // Net ripple — fade pulse (transform on <line> is unreliable across browsers)
+    tl.to(
       q(".net-line"),
-      { scaleY: 1, transformOrigin: "50% 0%" },
       {
         keyframes: [
-          { scaleY: 1.08, duration: 0.15 },
-          { scaleY: 0.97, duration: 0.18 },
-          { scaleY: 1, duration: 0.2 },
+          { opacity: 0.9, duration: 0.15 },
+          { opacity: 0.35, duration: 0.25 },
         ],
         stagger: { each: 0.01, from: "center" },
         ease: "sine.inOut",
