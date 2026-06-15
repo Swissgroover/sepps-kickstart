@@ -101,5 +101,3 @@ function RegistreeruPage() {
     </div>
   );
 }
-
-export { Check };
