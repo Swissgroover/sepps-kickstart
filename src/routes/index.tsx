@@ -43,7 +43,7 @@ function Hero() {
       <div className="absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-primary/30 blur-3xl" />
       <div className="absolute -right-20 bottom-0 h-[360px] w-[360px] rounded-full bg-pitch-glow/20 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
         <div className="flex flex-col gap-8">
           <div className="hero-eyebrow inline-flex w-max items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/80">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pitch-pulse" />
