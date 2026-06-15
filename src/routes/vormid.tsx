@@ -119,5 +119,3 @@ function VormidPage() {
     </div>
   );
 }
-
-export { Truck };

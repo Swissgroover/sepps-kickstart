@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VormidRouteImport } from './routes/vormid'
+import { Route as RegistreeruRouteImport } from './routes/registreeru'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as KlubiRouteImport } from './routes/klubi'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VormidRoute = VormidRouteImport.update({
+  id: '/vormid',
+  path: '/vormid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistreeruRoute = RegistreeruRouteImport.update({
+  id: '/registreeru',
+  path: '/registreeru',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KlubiRoute = KlubiRouteImport.update({
+  id: '/klubi',
+  path: '/klubi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/klubi': typeof KlubiRoute
+  '/kontakt': typeof KontaktRoute
+  '/registreeru': typeof RegistreeruRoute
+  '/vormid': typeof VormidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/klubi': typeof KlubiRoute
+  '/kontakt': typeof KontaktRoute
+  '/registreeru': typeof RegistreeruRoute
+  '/vormid': typeof VormidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/klubi': typeof KlubiRoute
+  '/kontakt': typeof KontaktRoute
+  '/registreeru': typeof RegistreeruRoute
+  '/vormid': typeof VormidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+  id: '__root__' | '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KlubiRoute: typeof KlubiRoute
+  KontaktRoute: typeof KontaktRoute
+  RegistreeruRoute: typeof RegistreeruRoute
+  VormidRoute: typeof VormidRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vormid': {
+      id: '/vormid'
+      path: '/vormid'
+      fullPath: '/vormid'
+      preLoaderRoute: typeof VormidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registreeru': {
+      id: '/registreeru'
+      path: '/registreeru'
+      fullPath: '/registreeru'
+      preLoaderRoute: typeof RegistreeruRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/klubi': {
+      id: '/klubi'
+      path: '/klubi'
+      fullPath: '/klubi'
+      preLoaderRoute: typeof KlubiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KlubiRoute: KlubiRoute,
+  KontaktRoute: KontaktRoute,
+  RegistreeruRoute: RegistreeruRoute,
+  VormidRoute: VormidRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
