@@ -1,5 +1,4 @@
-import { useGsap } from "@/lib/use-gsap";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -12,18 +11,40 @@ export function Reveal({
   delay?: number;
   y?: number;
 }) {
-  const ref = useGsap<HTMLDivElement>(({ gsap, scope }) => {
-    gsap.from(scope, {
-      autoAlpha: 0,
-      y,
-      duration: 0.9,
-      ease: "power3.out",
-      delay,
-      scrollTrigger: { trigger: scope, start: "top 85%", toggleActions: "play none none none" },
-    });
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
+
   return (
-    <div ref={ref} className={className} style={{ visibility: "hidden" }}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: shown ? 1 : 0,
+        transform: shown ? "translateY(0)" : `translateY(${y}px)`,
+        transition: `opacity 0.8s cubic-bezier(.16,1,.3,1) ${delay}s, transform 0.9s cubic-bezier(.16,1,.3,1) ${delay}s`,
+        willChange: "opacity, transform",
+      }}
+    >
       {children}
     </div>
   );
