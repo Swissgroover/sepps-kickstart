@@ -5,6 +5,7 @@ import { Marquee } from "@/components/site/Marquee";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { HeroGoalScene } from "@/components/site/HeroGoalScene";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,14 +33,6 @@ function Hero() {
       ease: "none",
       scrollTrigger: { trigger: ".hero-root", start: "top top", end: "bottom top", scrub: true },
     });
-
-    gsap.to(".hero-ball", {
-      y: -18,
-      duration: 1.6,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
   }, []);
 
   return (
@@ -50,63 +43,65 @@ function Hero() {
       <div className="absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-primary/30 blur-3xl" />
       <div className="absolute -right-20 bottom-0 h-[360px] w-[360px] rounded-full bg-pitch-glow/20 blur-3xl" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
-        <div className="hero-eyebrow inline-flex w-max items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/80">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pitch-pulse" />
-          Eesti jalgpalliklubi
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
+        <div className="flex flex-col gap-8">
+          <div className="hero-eyebrow inline-flex w-max items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-foreground/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pitch-pulse" />
+            Eesti jalgpalliklubi
+          </div>
+
+          <h1 className="font-display text-[clamp(3.5rem,11vw,9rem)] uppercase leading-[0.85] tracking-tight">
+            <span className="block overflow-hidden">
+              <span className="hero-word inline-block">Mängi</span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="hero-word inline-block text-stroke">nagu</span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="hero-word inline-block text-primary">SEPPS.</span>
+            </span>
+          </h1>
+
+          <p className="hero-sub max-w-xl text-base text-foreground/70 sm:text-lg">
+            Klubi, kus iga trenn on lahing ja iga mängija loeb. Tule väljakule —
+            treeningud, võistlused ja päris jalgpalli vaim ootavad.
+          </p>
+
+          <div className="flex flex-wrap items-stretch gap-3">
+            <Link
+              to="/registreeru"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+            >
+              Registreeru trenni
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              to="/vormid"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+            >
+              <Shirt size={16} /> Telli vorm
+            </Link>
+          </div>
+
+          <div className="mt-2 flex flex-wrap items-end gap-x-10 gap-y-6 text-sm text-foreground/60">
+            <div className="hero-meta">
+              <div className="font-display text-4xl leading-none text-foreground">100+</div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em]">mängijat</div>
+            </div>
+            <div className="hero-meta">
+              <div className="font-display text-4xl leading-none text-foreground">5x</div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em]">nädalas trenni</div>
+            </div>
+            <div className="hero-meta">
+              <div className="font-display text-4xl leading-none text-foreground">1</div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em]">klubi · 1 perekond</div>
+            </div>
+          </div>
         </div>
 
-        <h1 className="font-display text-[clamp(4rem,14vw,12rem)] uppercase leading-[0.85] tracking-tight">
-          <span className="block overflow-hidden">
-            <span className="hero-word inline-block">Mängi</span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="hero-word inline-block text-stroke">nagu</span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="hero-word inline-block text-primary">SEPPS.</span>
-          </span>
-        </h1>
-
-        <p className="hero-sub max-w-xl text-lg text-foreground/70 sm:text-xl">
-          Klubi, kus iga trenn on lahing ja iga mängija loeb. Tule väljakule —
-          treeningud, võistlused ja päris jalgpalli vaim ootavad.
-        </p>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <Link
-            to="/registreeru"
-            className="hero-cta group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
-          >
-            Registreeru trenni
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </Link>
-          <Link
-            to="/vormid"
-            className="hero-cta group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
-          >
-            <Shirt size={16} /> Telli vorm
-          </Link>
+        <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
+          <HeroGoalScene />
         </div>
-
-        <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-4 text-sm text-foreground/60">
-          <div className="hero-meta">
-            <div className="font-display text-4xl text-foreground">100+</div>
-            <div className="text-xs uppercase tracking-[0.2em]">mängijat</div>
-          </div>
-          <div className="hero-meta">
-            <div className="font-display text-4xl text-foreground">5x</div>
-            <div className="text-xs uppercase tracking-[0.2em]">nädalas trenni</div>
-          </div>
-          <div className="hero-meta">
-            <div className="font-display text-4xl text-foreground">1</div>
-            <div className="text-xs uppercase tracking-[0.2em]">klubi · 1 perekond</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="hero-ball pointer-events-none absolute right-8 top-32 hidden h-24 w-24 md:block">
-        <div className="h-full w-full rounded-full border-2 border-white/40 bg-gradient-to-br from-white to-white/60 shadow-2xl shadow-primary/50" />
       </div>
     </section>
   );
