@@ -50,7 +50,7 @@ function Hero() {
             Eesti jalgpalliklubi
           </div>
 
-          <h1 className="font-display text-[clamp(3rem,9vw,7rem)] uppercase leading-[0.85] tracking-tight">
+          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
             <span className="block overflow-hidden">
               <span className="hero-word inline-block">Mängi</span>
             </span>
@@ -99,7 +99,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
+        <div className="relative mx-auto w-full min-w-0 max-w-xl lg:max-w-none">
           <HeroGoalScene />
         </div>
       </div>
