@@ -17,7 +17,8 @@ export function HeroGoalScene() {
 
     // Goal frame draws in via stroke-dashoffset
     q(".frame-line").forEach((el) => {
-      const len = (el as SVGGeometryElement).getTotalLength?.() ?? 800;
+      const geom = el as unknown as SVGGeometryElement;
+      const len = typeof geom.getTotalLength === "function" ? geom.getTotalLength() : 800;
       gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
     });
     tl.to(q(".frame-line"), {
@@ -143,9 +144,7 @@ export function HeroGoalScene() {
                 x1={xFront}
                 y1={360}
                 x2={xBack}
-                y2={160 + (380 - 160) * (1 - 0) + 0}
-                // straight slanted line down/back
-                {...{ x2: xBack, y2: 380 }}
+                y2={380}
               />
             );
           })}
