@@ -11,9 +11,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "JK SEPPS — Jalgpalliklubi" },
-      { name: "description", content: "JK SEPPS — kirglik Eesti jalgpalliklubi. Tutvu klubiga, telli vormid ja registreeru trenni." },
+      {
+        name: "description",
+        content:
+          "JK SEPPS — kirglik Eesti jalgpalliklubi. Tutvu klubiga, telli vormid ja registreeru trenni.",
+      },
       { property: "og:title", content: "JK SEPPS — Jalgpalliklubi" },
-      { property: "og:description", content: "Kirglik Eesti jalgpalliklubi. Trennid, võistlused ja vormid." },
+      {
+        property: "og:description",
+        content: "Kirglik Eesti jalgpalliklubi. Trennid, võistlused ja vormid.",
+      },
     ],
   }),
   component: Index,
@@ -63,14 +70,14 @@ function Hero() {
           </h1>
 
           <p className="hero-sub max-w-xl text-base text-foreground/70 sm:text-lg">
-            Klubi, kus iga trenn on lahing ja iga mängija loeb. Tule väljakule —
-            treeningud, võistlused ja päris jalgpalli vaim ootavad.
+            Klubi, kus iga trenn on lahing ja iga mängija loeb. Tule väljakule — treeningud,
+            võistlused ja päris jalgpalli vaim ootavad.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
             <Link
               to="/registreeru"
-              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
             >
               Registreeru trenni
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -109,15 +116,37 @@ function Hero() {
 
 function FeatureCards() {
   const cards = [
-    { to: "/klubi", icon: Trophy, title: "Klubi lugu", desc: "Kes me oleme, mille eest mängime ja kuhu liigume." },
-    { to: "/vormid", icon: Shirt, title: "Treening- ja võistlusvorm", desc: "Telli klubi vormid otse iSport poest." },
-    { to: "/registreeru", icon: UserPlus, title: "Tule trenni", desc: "Saada e-kiri ja liitu järgmise trenniga." },
+    {
+      to: "/klubi",
+      icon: Trophy,
+      title: "Klubi lugu",
+      desc: "Kes me oleme, mille eest mängime ja kuhu liigume.",
+    },
+    {
+      to: "/vormid",
+      icon: Shirt,
+      title: "Treening- ja võistlusvorm",
+      desc: "Telli klubi vormid otse iSport poest.",
+    },
+    {
+      to: "/registreeru",
+      icon: UserPlus,
+      title: "Tule trenni",
+      desc: "Saada e-kiri ja liitu järgmise trenniga.",
+    },
   ] as const;
 
   return (
     <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6">
       <Reveal>
-        <SectionHeading eyebrow="Liigu edasi" title={<>Kolm sammu <span className="text-primary">väljakule</span></>}>
+        <SectionHeading
+          eyebrow="Liigu edasi"
+          title={
+            <>
+              Kolm sammu <span className="text-primary">väljakule</span>
+            </>
+          }
+        >
           Vali, kust alustada — kõik teed viivad palli juurde.
         </SectionHeading>
       </Reveal>
@@ -134,7 +163,8 @@ function FeatureCards() {
               <h3 className="mt-6 font-display text-3xl uppercase tracking-tight">{c.title}</h3>
               <p className="mt-3 text-sm text-foreground/70">{c.desc}</p>
               <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                Vaata <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                Vaata{" "}
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           </Reveal>
@@ -152,10 +182,16 @@ function AboutTeaser() {
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-24 sm:px-6 md:grid-cols-2 md:items-center">
         <Reveal>
-          <SectionHeading eyebrow="Klubist" title={<>Pall, kirg, <span className="text-primary">perekond.</span></>}>
-            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Treenime noori mängijaid,
-            kes tahavad rohkem kui ainult mängida — me ehitame mängumehi ja mängunaisi
-            kogu eluks.
+          <SectionHeading
+            eyebrow="Klubist"
+            title={
+              <>
+                Pall, kirg, <span className="text-primary">perekond.</span>
+              </>
+            }
+          >
+            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Treenime noori mängijaid, kes tahavad
+            rohkem kui ainult mängida — me ehitame mängumehi ja mängunaisi kogu eluks.
           </SectionHeading>
         </Reveal>
         <Reveal delay={0.15}>
@@ -182,7 +218,9 @@ function Index() {
   return (
     <div>
       <Hero />
-      <Marquee items={["JK SEPPS", "Eesti", "Football Club", "Since 2020", "Pall · Kirg · Perekond"]} />
+      <Marquee
+        items={["JK SEPPS", "Eesti", "Football Club", "Since 2020", "Pall · Kirg · Perekond"]}
+      />
       <FeatureCards />
       <AboutTeaser />
     </div>

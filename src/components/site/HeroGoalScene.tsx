@@ -19,21 +19,29 @@ export function HeroGoalScene() {
     });
 
     // Net fades in
-    tl.from(q(".net-line"), {
-      autoAlpha: 0,
-      duration: 0.6,
-      stagger: 0.008,
-    }, "-=0.3");
+    tl.from(
+      q(".net-line"),
+      {
+        autoAlpha: 0,
+        duration: 0.6,
+        stagger: 0.008,
+      },
+      "-=0.3",
+    );
 
     // Ball rolls in spinning into the goal
-    tl.from(q(".ball-group"), {
-      x: -320,
-      y: 80,
-      rotation: 540,
-      transformOrigin: "50% 50%",
-      duration: 1.0,
-      ease: "power2.in",
-    }, "-=0.4");
+    tl.from(
+      q(".ball-group"),
+      {
+        x: -320,
+        y: 80,
+        rotation: 540,
+        transformOrigin: "50% 50%",
+        duration: 1.0,
+        ease: "power2.in",
+      },
+      "-=0.4",
+    );
 
     // Impact shockwave
     tl.fromTo(
@@ -66,22 +74,30 @@ export function HeroGoalScene() {
     ).to(q(".ball-group"), { y: 0, duration: 0.32, ease: "bounce.out" });
 
     // Text appears on the ball
-    tl.from(q(".ball-text"), {
-      autoAlpha: 0,
-      scale: 0.4,
-      transformOrigin: "300px 300px",
-      duration: 0.55,
-      ease: "back.out(2.4)",
-    }, "-=0.1");
+    tl.from(
+      q(".ball-text"),
+      {
+        autoAlpha: 0,
+        scale: 0.4,
+        transformOrigin: "300px 300px",
+        duration: 0.55,
+        ease: "back.out(2.4)",
+      },
+      "-=0.1",
+    );
 
     // Idle nudge
-    tl.to(q(".ball-group"), {
-      y: -6,
-      duration: 1.6,
-      ease: "sine.inOut",
-      yoyo: true,
-      repeat: -1,
-    }, "+=0.4");
+    tl.to(
+      q(".ball-group"),
+      {
+        y: -6,
+        duration: 1.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      },
+      "+=0.4",
+    );
   }, []);
 
   return (
@@ -125,14 +141,7 @@ export function HeroGoalScene() {
             const xFront = 100 + t * 400;
             const xBack = 60 + t * 480;
             return (
-              <line
-                key={`v${i}`}
-                className="net-line"
-                x1={xFront}
-                y1={120}
-                x2={xBack}
-                y2={160}
-              />
+              <line key={`v${i}`} className="net-line" x1={xFront} y1={120} x2={xBack} y2={160} />
             );
           })}
           {Array.from({ length: 13 }).map((_, i) => {
@@ -140,14 +149,7 @@ export function HeroGoalScene() {
             const xFront = 100 + t * 400;
             const xBack = 60 + t * 480;
             return (
-              <line
-                key={`vd${i}`}
-                className="net-line"
-                x1={xFront}
-                y1={360}
-                x2={xBack}
-                y2={380}
-              />
+              <line key={`vd${i}`} className="net-line" x1={xFront} y1={360} x2={xBack} y2={380} />
             );
           })}
           {/* horizontal net rows */}
@@ -165,7 +167,14 @@ export function HeroGoalScene() {
         </g>
 
         {/* shockwave on impact */}
-        <circle className="shockwave" cx="300" cy="300" r="80" stroke="oklch(0.72 0.18 250)" strokeWidth="3" />
+        <circle
+          className="shockwave"
+          cx="300"
+          cy="300"
+          r="80"
+          stroke="oklch(0.72 0.18 250)"
+          strokeWidth="3"
+        />
 
         {/* Ball */}
         <g className="ball-group">
@@ -177,21 +186,6 @@ export function HeroGoalScene() {
             <polygon points="335,300 323,283 305,290 307,310 325,315" />
             <polygon points="300,340 282,328 289,308 311,308 318,328" />
           </g>
-        </g>
-
-        {/* SEPPS text on ball (static, fades in after) */}
-        <g className="ball-text">
-          <text
-            x="300"
-            y="306"
-            textAnchor="middle"
-            fontFamily="Bebas Neue, sans-serif"
-            fontSize="28"
-            fill="oklch(0.52 0.24 258)"
-            letterSpacing="2"
-          >
-            JK SEPPS
-          </text>
         </g>
       </svg>
     </div>
