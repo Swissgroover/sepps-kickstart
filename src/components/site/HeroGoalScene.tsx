@@ -1,85 +1,86 @@
 import { useGsap } from "@/lib/use-gsap";
 
-/**
- * Animated SVG scene: goal frame draws in, net fades in, ball rolls in
- * spinning with "JK SEPPS" on it, hits net and net ripples.
- */
 export function HeroGoalScene() {
   const ref = useGsap<HTMLDivElement>(({ gsap, scope }) => {
     const q = gsap.utils.selector(scope);
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    gsap.set(q(".frame-line"), { drawSVG: undefined });
-    gsap.set(q(".net-line"), { autoAlpha: 0 });
-    gsap.set(q(".ball-group"), { x: -260, y: 60, rotation: 0, transformOrigin: "50% 50%" });
-    gsap.set(q(".ball-text"), { autoAlpha: 0, scale: 0.6, transformOrigin: "50% 50%" });
-    gsap.set(q(".shockwave"), { scale: 0.2, autoAlpha: 0, transformOrigin: "50% 50%" });
-
-    // Goal frame draws in via stroke-dashoffset
-    q(".frame-line").forEach((el) => {
-      const geom = el as unknown as SVGGeometryElement;
-      const len = typeof geom.getTotalLength === "function" ? geom.getTotalLength() : 800;
-      gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
-    });
-    tl.to(q(".frame-line"), {
-      strokeDashoffset: 0,
-      duration: 0.9,
-      stagger: 0.08,
-      ease: "power2.inOut",
+    // Goal frame: scale in from crossbar down. Uses .from() so elements stay
+    // in final visible state if GSAP never runs.
+    tl.from(q(".frame-line"), {
+      scaleY: 0,
+      transformOrigin: "50% 0%",
+      duration: 0.7,
+      stagger: 0.05,
+      ease: "power3.out",
     });
 
     // Net fades in
-    tl.to(q(".net-line"), { autoAlpha: 0.45, duration: 0.5, stagger: 0.01 }, "-=0.3");
+    tl.from(q(".net-line"), {
+      autoAlpha: 0,
+      duration: 0.6,
+      stagger: 0.008,
+    }, "-=0.3");
 
-    // Ball rolls in spinning
-    tl.to(
-      q(".ball-group"),
-      {
-        x: 0,
-        y: 0,
-        rotation: -540,
-        duration: 1.1,
-        ease: "power2.in",
-      },
-      "-=0.5",
+    // Ball rolls in spinning into the goal
+    tl.from(q(".ball-group"), {
+      x: -320,
+      y: 80,
+      rotation: 540,
+      transformOrigin: "50% 50%",
+      duration: 1.0,
+      ease: "power2.in",
+    }, "-=0.4");
+
+    // Impact shockwave
+    tl.fromTo(
+      q(".shockwave"),
+      { scale: 0.2, autoAlpha: 0.7, transformOrigin: "50% 50%" },
+      { scale: 1.6, autoAlpha: 0, duration: 0.7, ease: "power2.out" },
+      "-=0.05",
     );
 
-    // Impact: shockwave + net ripple
-    tl.to(q(".shockwave"), { scale: 1.4, autoAlpha: 0.6, duration: 0.5, ease: "power2.out" }, "-=0.1")
-      .to(q(".shockwave"), { autoAlpha: 0, duration: 0.35 }, "-=0.1");
-
-    tl.to(
+    // Net ripple
+    tl.fromTo(
       q(".net-line"),
+      { scaleY: 1, transformOrigin: "50% 0%" },
       {
         keyframes: [
           { scaleY: 1.08, duration: 0.15 },
           { scaleY: 0.97, duration: 0.18 },
           { scaleY: 1, duration: 0.2 },
         ],
-        transformOrigin: "50% 0%",
         stagger: { each: 0.01, from: "center" },
         ease: "sine.inOut",
       },
-      "-=0.65",
+      "-=0.7",
     );
 
-    // Ball bounce + text appear
-    tl.to(q(".ball-group"), { y: -14, duration: 0.18, ease: "power2.out" }, "-=0.55")
-      .to(q(".ball-group"), { y: 0, duration: 0.22, ease: "bounce.out" })
-      .to(q(".ball-text"), { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, "-=0.25");
-
-    // Idle: slow ball nudge
-    tl.to(
+    // Ball bounce
+    tl.fromTo(
       q(".ball-group"),
-      {
-        y: -6,
-        duration: 1.6,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      },
-      "+=0.3",
-    );
+      { y: 0 },
+      { y: -16, duration: 0.18, ease: "power2.out" },
+      "-=0.55",
+    ).to(q(".ball-group"), { y: 0, duration: 0.32, ease: "bounce.out" });
+
+    // Text appears on the ball
+    tl.from(q(".ball-text"), {
+      autoAlpha: 0,
+      scale: 0.4,
+      transformOrigin: "300px 300px",
+      duration: 0.55,
+      ease: "back.out(2.4)",
+    }, "-=0.1");
+
+    // Idle nudge
+    tl.to(q(".ball-group"), {
+      y: -6,
+      duration: 1.6,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
+    }, "+=0.4");
   }, []);
 
   return (
