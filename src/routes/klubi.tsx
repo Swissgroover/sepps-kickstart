@@ -18,7 +18,7 @@ export const Route = createFileRoute("/klubi")({
 
 const values = [
   { icon: Shield, title: "Distsipliin", desc: "Õigeaegsus, pühendumus ja austus kaaslaste vastu." },
-  { icon: Target, title: "Arendus", desc: "Iga trenn on samm paremaks. Tehnika, taktika, mõtteviis." },
+  { icon: Target, title: "Areng", desc: "Iga trenn on samm paremaks. Tehnika, taktika, mõtteviis." },
   { icon: Users, title: "Meeskond", desc: "Mängija mängija eest. Klubi mängija eest." },
   { icon: Heart, title: "Kirg", desc: "Ilma armastuseta mängu vastu pole võitu." },
 ];
@@ -32,11 +32,10 @@ function KlubiPage() {
           <Reveal>
             <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">Klubi</div>
             <h1 className="font-display text-6xl uppercase leading-[0.9] tracking-tight sm:text-8xl">
-              Üks klubi.<br /><span className="text-primary">Üks perekond.</span>
+              Üks klubi.<br /><span className="text-primary">Ühine eesmärk.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-foreground/70">
-              JK SEPPS on jalgpalliklubi ERASPORDIKOOL SEPPSi all. Treenime mängijaid,
-              kes tahavad rohkem — paremat tehnikat, kõvemat võistlusvaimu ja päris meeskonda.
+              JK SEPPS tegutseb ERASPORDIKOOL SEPPSi koosseisus ning pakub lastele ja noortele võimalust areneda toetavas, professionaalses ja sõbralikus keskkonnas. Meie eesmärk on kujundada oskuslikke mängijaid, enesekindlaid noori ja tugeva meeskonnavaimuga inimesi.
             </p>
           </Reveal>
         </div>
@@ -71,10 +70,8 @@ function KlubiPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <SectionHeading eyebrow="Peatreener" title={<>Treener, klubi edu <span className="text-primary">taga.</span></>}>
-              Madis Sepp juhib JK SEPPSi ja ERASPORDIKOOL SEPPSi. Treenerina paneb ta
-              rõhku tehnikale, distsipliinile ja sellele, et mängija lahkuks väljakult
-              parema inimesena, kui ta saabus.
+            <SectionHeading eyebrow="Peatreener" title={<>Treener, kes  <span className="text-primary">inspireerib.</span></>}>
+              Madis Sepp juhib JK SEPPSi ja ERASPORDIKOOL SEPPSi tegevust. Oma töös peab ta oluliseks iga mängija individuaalset arengut, tehniliste oskuste järjepidevat täiustamist ning positiivse ja toetava treeningkeskkonna loomist. Tema eesmärk on, et iga laps lahkuks treeningult enesekindlama, oskuslikuma ja rõõmsamana kui sinna tulles.
             </SectionHeading>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="mailto:madis@sepps.eu" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">madis@sepps.eu</a>

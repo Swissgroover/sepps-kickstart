@@ -46,8 +46,7 @@ function VormidPage() {
               Kanna <span className="text-primary">klubi värve.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-foreground/70">
-              JK SEPPSi treening- ja võistlusvormid on tellitavad otse iSport poest.
-              Vali õige suurus ja vorm — meie partner toimetab kohale.
+             JK SEPPSi treening- ja võistlusvarustuse saad mugavalt tellida meie koostööpartneri iSporti e-poest. Vali sobiv suurus ning ülejäänu eest hoolitseb juba iSport.
             </p>
           </Reveal>
         </div>

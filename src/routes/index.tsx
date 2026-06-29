@@ -53,20 +53,19 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
         <div className="flex flex-col gap-8">
           <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
-            <span className="block overflow-hidden">
-              <span className="hero-word inline-block">Mängi</span>
+            <span className="block">
+              <span className="hero-word inline-block">Kasva</span>
             </span>
             <span className="block overflow-hidden">
-              <span className="hero-word inline-block text-stroke">nagu</span>
+              <span className="hero-word inline-block text-stroke">koos</span>
             </span>
             <span className="block overflow-hidden">
-              <span className="hero-word inline-block text-primary">SEPPS.</span>
+              <span className="hero-word inline-block text-primary">SEPPS-iga.</span>
             </span>
           </h1>
 
           <p className="hero-sub max-w-xl text-base text-foreground/70 sm:text-lg">
-            Klubi, kus iga trenn on lahing ja iga mängija loeb. Tule väljakule — treeningud,
-            võistlused ja päris jalgpalli vaim ootavad.
+            JK SEPPSis on iga laps oluline. Pakume kvaliteetseid treeninguid, põnevaid võistlusi ja toetavat keskkonda, kus areneb nii jalgpallur kui ka inimene.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
@@ -124,11 +123,12 @@ function FeatureCards() {
           eyebrow="Liigu edasi"
           title={
             <>
-              Kolm sammu <span className="text-primary">väljakule</span>
+              Sinu <span className="text-primary">jalgpalliteekond </span> 
+               algab siit.
             </>
           }
         >
-          Vali, kust alustada — kõik teed viivad palli juurde.
+          Vali endale sobiv esimene samm – meie juures leiab oma koha iga noor jalgpallihuviline.
         </SectionHeading>
       </Reveal>
 
@@ -171,17 +171,16 @@ function AboutTeaser() {
               </>
             }
           >
-            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Treenime noori mängijaid, kes tahavad
-            rohkem kui ainult mängida — me ehitame mängumehi ja mängunaisi kogu eluks.
+            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi, kus aitame lastel ja noortel avastada jalgpalli võlu. Arendame tehnilisi oskusi, meeskonnatööd, enesekindlust ja sportlikke väärtusi, mis saadavad neid kogu eluks.
           </SectionHeading>
         </Reveal>
         <Reveal delay={0.15}>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { k: "Distsipliin", v: "Tule õigel ajal. Anna kõik." },
-              { k: "Tehnika", v: "Iga puutest paremaks." },
-              { k: "Meeskond", v: "Üksi kiiresti, koos kaugele." },
-              { k: "Rõõm", v: "Ilma rõõmuta pole jalgpalli." },
+              { k: "Distsipliin", v: "Õpime olema täpsed, pühendunud ja austama nii meeskonnakaaslasi kui ka vastaseid." },
+              { k: "Tehnika", v: "Iga treening on võimalus õppida midagi uut ja saada enesekindlamaks palliga." },
+              { k: "Meeskond", v: "Koos toetame üksteist, õpime koostööd ning tähistame ühiseid õnnestumisi." },
+              { k: "Rõõm", v: "Armastus jalgpalli vastu on parim motivatsioon arenemiseks." },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card/80 p-5">
                 <div className="font-display text-2xl uppercase text-primary">{x.k}</div>

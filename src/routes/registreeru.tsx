@@ -30,11 +30,10 @@ function RegistreeruPage() {
           <Reveal>
             <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">Registreeru</div>
             <h1 className="font-display text-6xl uppercase leading-[0.9] tracking-tight sm:text-8xl">
-              Tule <span className="text-primary">väljakule.</span>
+              Astu esimene samm  <span className="text-primary">jalgpalli juurde.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-foreground/70">
-              Liitumine on lihtne — saada meile e-kiri ja võtame sinuga ühendust,
-              et leida sobiv trennigrupp.
+              Liitumine on lihtne! Võta meiega ühendust e-posti teel ning leiame sinu lapse vanusele ja oskustele sobiva treeninggrupi. Ootame väljakule nii algajaid kui ka juba kogenumaid noori jalgpallureid.
             </p>
           </Reveal>
         </div>
