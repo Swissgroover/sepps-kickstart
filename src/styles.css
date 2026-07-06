@@ -187,3 +187,30 @@
 @utility animate-pitch-pulse {
   animation: pitch-pulse 4s ease-in-out infinite;
 }
+
+@utility builder-input {
+  display: flex;
+  height: 42px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0 14px;
+  font-size: 14px;
+  color: white;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+@utility builder-select {
+  display: flex;
+  height: 42px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0 14px;
+  font-size: 14px;
+  color: white;
+  appearance: none;
+  cursor: pointer;
+}
