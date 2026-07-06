@@ -13,6 +13,7 @@ import { Route as VormidRouteImport } from './routes/vormid'
 import { Route as RegistreeruRouteImport } from './routes/registreeru'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as KlubiRouteImport } from './routes/klubi'
+import { Route as BuilderRouteImport } from './routes/builder'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VormidRoute = VormidRouteImport.update({
@@ -35,6 +36,11 @@ const KlubiRoute = KlubiRouteImport.update({
   path: '/klubi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuilderRoute = BuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
   '/klubi': typeof KlubiRoute
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
   '/klubi': typeof KlubiRoute
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
   '/klubi': typeof KlubiRoute
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
@@ -65,14 +74,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+  fullPaths:
+    | '/'
+    | '/builder'
+    | '/klubi'
+    | '/kontakt'
+    | '/registreeru'
+    | '/vormid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
-  id: '__root__' | '/' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+  to: '/' | '/builder' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+  id:
+    | '__root__'
+    | '/'
+    | '/builder'
+    | '/klubi'
+    | '/kontakt'
+    | '/registreeru'
+    | '/vormid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BuilderRoute: typeof BuilderRoute
   KlubiRoute: typeof KlubiRoute
   KontaktRoute: typeof KontaktRoute
   RegistreeruRoute: typeof RegistreeruRoute
@@ -109,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KlubiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/builder': {
+      id: '/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -121,6 +151,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BuilderRoute: BuilderRoute,
   KlubiRoute: KlubiRoute,
   KontaktRoute: KontaktRoute,
   RegistreeruRoute: RegistreeruRoute,
@@ -129,13 +160,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
