@@ -1,11 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Shirt, UserPlus, Trophy } from "lucide-react";
-import { useGsap } from "@/lib/use-gsap";
-import { Marquee } from "@/components/site/Marquee";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import heroTeam from "@/assets/hero-team.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,20 +24,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Hero() {
-  const ref = useGsap<HTMLDivElement>(({ gsap, scope }) => {
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-    tl.from(".hero-eyebrow", { autoAlpha: 0, y: 12, duration: 0.6 })
-      .from(".hero-word", { yPercent: 110, autoAlpha: 0, duration: 1, stagger: 0.12 }, "-=0.2")
-      .from(".hero-sub", { autoAlpha: 0, y: 16, duration: 0.7 }, "-=0.5")
-      .from(".hero-cta", { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.1 }, "-=0.4")
-      .from(".hero-meta", { autoAlpha: 0, y: 10, duration: 0.6, stagger: 0.08 }, "-=0.4");
-
-  }, []);
-
   return (
-    <section ref={ref} className="hero-root relative overflow-hidden bg-ink">
+    <section className="hero-root relative overflow-hidden bg-ink">
       <img
-        src={heroTeam.url}
+        src="/images/hero-team.png"
         alt="JK SEPPS meeskond"
         className="absolute inset-0 h-full w-full object-cover object-[28%_30%] sm:object-[40%_30%]"
       />
