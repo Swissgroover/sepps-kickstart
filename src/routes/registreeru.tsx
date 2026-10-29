@@ -17,7 +17,7 @@ export const Route = createFileRoute("/registreeru")({
 });
 
 const mailBody = encodeURIComponent(
-  `Tere!\n\nSooviksin registreerida trenni.\n\nMängija nimi:\nVanus / sünniaeg:\nVanema nimi (alaealise puhul):\nKontakttelefon:\nVarasem kogemus:\nLisainfo:\n\nTänan!`,
+  `Tere!\n\nSooviksin registreerida lapse trenni.\n\nLapse nimi:\nLapse isikukood:\nVanema nimi:\nVanema isikukood:\nKontakttelefon:\nKodune aadress:\nTervislikud eripärad:\nVarasem kogemus:\nLisainfo:\n\nTänan!`,
 );
 const MAILTO = `mailto:info@sepps.eu?subject=${encodeURIComponent("Trenni registreerimine")}&body=${mailBody}`;
 
