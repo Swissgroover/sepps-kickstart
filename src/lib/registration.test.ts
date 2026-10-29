@@ -1,3 +1,4 @@
+// @ts-ignore bun built-in test runner
 import { expect, test } from "bun:test";
 import { REGISTRATION_MAILTO } from "./registration";
 
