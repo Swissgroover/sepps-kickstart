@@ -49,7 +49,7 @@ function Hero() {
           </h1>
 
           <p className="hero-sub max-w-xl text-base text-foreground/70 [text-shadow:0_1px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.7)] sm:text-lg">
-            JK SEPPSis on iga laps oluline. Pakume kvaliteetseid treeninguid, põnevaid võistlusi ja toetavat keskkonda, kus areneb nii jalgpallur kui ka inimene.
+            Meie juures saavad lapsed jalgpalli mängida, uusi oskusi õppida ja meeskonnast rõõmu tunda. Trennis pingutame koos ning mängudel hoiame üksteisele pöialt.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
@@ -80,20 +80,23 @@ function FeatureCards() {
     {
       to: "/klubi",
       icon: Trophy,
-      title: "Klubi lugu",
-      desc: "Kes me oleme, mille eest mängime ja kuhu liigume.",
-    },
-    {
-      to: "/vormid",
-      icon: Shirt,
-      title: "Treening- ja võistlusvorm",
-      desc: "Telli klubi vormid otse iSport poest.",
+      title: "Meie klubi",
+      desc: "Loe, kes me oleme ja mida laste treenimisel oluliseks peame.",
+      link: "Tutvu klubiga",
     },
     {
       to: "/registreeru",
       icon: UserPlus,
       title: "Tule trenni",
-      desc: "Saada e-kiri ja liitu järgmise trenniga.",
+      desc: "Kirjuta meile ja leiame lapsele sobiva treeninggrupi.",
+      link: "Registreeru trenni",
+    },
+    {
+      to: "/vormid",
+      icon: Shirt,
+      title: "Klubivorm",
+      desc: "Meie treening- ja võistlusvormid leiad iSporti e-poest.",
+      link: "Vaata vorme",
     },
   ] as const;
 
@@ -101,15 +104,15 @@ function FeatureCards() {
     <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6">
       <Reveal>
         <SectionHeading
-          eyebrow="Liigu edasi"
+          eyebrow="Järgmine samm"
           title={
             <>
-              Sinu <span className="text-primary">jalgpalliteekond </span> 
-               algab siit.
+              Tut
+              <span className="text-primary">tavaks</span> meie klubiga
             </>
           }
         >
-          Vali endale sobiv esimene samm – meie juures leiab oma koha iga noor jalgpallihuviline.
+          Tutvu meie tegemistega, leia info trenniga liitumise kohta või telli lapsele klubivorm.
         </SectionHeading>
       </Reveal>
 
@@ -125,7 +128,7 @@ function FeatureCards() {
               <h3 className="mt-6 font-display text-3xl uppercase tracking-tight">{c.title}</h3>
               <p className="mt-3 text-sm text-foreground/70">{c.desc}</p>
               <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                Vaata{" "}
+                {c.link}{" "}
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
@@ -135,6 +138,7 @@ function FeatureCards() {
     </section>
   );
 }
+
 
 function AboutTeaser() {
   return (
@@ -148,20 +152,20 @@ function AboutTeaser() {
             eyebrow="Klubist"
             title={
               <>
-                Pall, kirg, <span className="text-primary">perekond.</span>
+                Meie oleme <span className="text-primary">JK SEPPS</span>
               </>
             }
           >
-            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi, kus aitame lastel ja noortel avastada jalgpalli võlu. Arendame tehnilisi oskusi, meeskonnatööd, enesekindlust ja sportlikke väärtusi, mis saadavad neid kogu eluks.
+            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Meile on oluline, et laps õpiks jalgpalli mängima ja tahaks ka järgmisesse trenni tulla. Harjutame palliga, õpime koos mängima ning saame kogemusi nii võitudest kui ka kaotustest.
           </SectionHeading>
         </Reveal>
         <Reveal delay={0.15}>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { k: "Distsipliin", v: "Õpime olema täpsed, pühendunud ja austama nii meeskonnakaaslasi kui ka vastaseid." },
-              { k: "Tehnika", v: "Iga treening on võimalus õppida midagi uut ja saada enesekindlamaks palliga." },
-              { k: "Meeskond", v: "Koos toetame üksteist, õpime koostööd ning tähistame ühiseid õnnestumisi." },
-              { k: "Rõõm", v: "Armastus jalgpalli vastu on parim motivatsioon arenemiseks." },
+              { k: "Pallioskused", v: "Harjutame söötmist, palli valdamist ja pealelööke. Uued oskused tulevad proovides ja harjutades." },
+              { k: "Meeskond", v: "Õpime kaaslastega arvestama ja üksteist aitama. Hea sööt ja kaaslase õnnestumine väärivad samuti kiitust." },
+              { k: "Kokkulepped", v: "Tuleme õigeks ajaks trenni, kuulame treenerit ning austame kaaslasi ja vastaseid." },
+              { k: "Mängurõõm", v: "Pingutame ja võtame mängu tõsiselt, aga jätame ruumi ka naerule. Tahame, et lastel oleks koos hea mängida." },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card/80 p-5">
                 <div className="font-display text-2xl uppercase text-primary">{x.k}</div>
