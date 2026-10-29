@@ -108,6 +108,37 @@ function FeatureCards() {
           title={
             <>
               Tut
+              <span className="text-primary">vavaks</span> meie klubiga
+            </>
+          }
+        >
+          Tutvu meie tegemistega, leia info trenniga liitumise kohta või telli lapsele klubivorm.
+        </SectionHeading>
+      </Reveal>
+
+      <div className="mt-14 grid gap-6 md:grid-cols-3">
+        {cards.map((c, i) => (
+          <Reveal key={c.to} delay={i * 0.1}>
+            <Link
+              to={c.to}
+              className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-card p-8 transition-colors hover:border-primary/60"
+            >
+              <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-primary/0 blur-3xl transition-colors duration-500 group-hover:bg-primary/30" />
+              <c.icon className="text-primary" size={28} />
+              <h3 className="mt-6 font-display text-3xl uppercase tracking-tight">{c.title}</h3>
+              <p className="mt-3 text-sm text-foreground/70">{c.desc}</p>
+              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                {c.link}{" "}
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 
 function AboutTeaser() {
   return (
