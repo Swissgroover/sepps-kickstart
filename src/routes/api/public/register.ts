@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { registrationSchema, type Registration } from "@/lib/registration";
+import { registrationSchema } from "@/lib/registration";
 
 // Best-effort per-instance rate limit: 5 requests / 10 min per IP.
 const hits = new Map<string, number[]>();
@@ -9,30 +9,6 @@ function limited(ip: string) {
   list.push(now);
   hits.set(ip, list);
   return list.length > 5;
-}
-
-const esc = (s: string) =>
-  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-
-function body(r: Registration) {
-  const rows: [string, string][] = [
-    ["Lapse nimi", r.childName],
-    ["Lapse isikukood", r.childCode],
-    ["Vanema nimi", r.parentName],
-    ["Vanema isikukood", r.parentCode],
-    ["Kontakttelefon", r.phone],
-    ["Vanema e-post", r.email],
-    ["Kodune aadress", r.address],
-    ["Tervislikud eripärad", r.health || "-"],
-    ["Varasem kogemus", r.experience || "-"],
-    ["Lisainfo", r.notes || "-"],
-  ];
-  return {
-    text: `Uus trenni registreerimissoov\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}`,
-    html: `<h2>Uus trenni registreerimissoov</h2><table cellpadding="6">${rows
-      .map(([k, v]) => `<tr><td><b>${esc(k)}</b></td><td>${esc(v).replace(/\n/g, "<br>")}</td></tr>`)
-      .join("")}</table>`,
-  };
 }
 
 const json = (data: unknown, status = 200) =>
