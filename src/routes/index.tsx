@@ -42,14 +42,14 @@ function Hero() {
       <img
         src={heroTeam.url}
         alt="JK SEPPS meeskond"
-        className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
+        className="absolute inset-0 h-full w-full object-cover object-[40%_30%]"
       />
 
 
       <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
         <div className="flex flex-col gap-8">
 
-          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
+          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight [text-shadow:0_2px_18px_rgba(0,0,0,0.65)]">
             <span className="block">
               <span className="hero-word inline-block">Kasva</span>
             </span>
@@ -61,14 +61,14 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="hero-sub max-w-xl text-base text-foreground/70 sm:text-lg">
+          <p className="hero-sub max-w-xl text-base text-foreground/70 [text-shadow:0_1px_10px_rgba(0,0,0,0.65)] sm:text-lg">
             JK SEPPSis on iga laps oluline. Pakume kvaliteetseid treeninguid, põnevaid võistlusi ja toetavat keskkonda, kus areneb nii jalgpallur kui ka inimene.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
             <Link
               to="/registreeru"
-              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
               Registreeru trenni
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
