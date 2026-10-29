@@ -51,7 +51,7 @@ export function SiteHeader() {
       <div className="flex h-1">
         <span className="flex-1 bg-primary" />
         <span className="flex-1 bg-ink" />
-        <span className="flex-1 bg-background" />
+        <span className="flex-1 bg-soft" />
       </div>
       {open && (
         <div className="border-t border-border bg-background md:hidden">
