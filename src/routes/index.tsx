@@ -46,8 +46,9 @@ function Hero() {
       />
 
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+      <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
         <div className="flex flex-col gap-8">
+
           <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
             <span className="block">
               <span className="hero-word inline-block">Kasva</span>
@@ -81,12 +82,9 @@ function Hero() {
           </div>
 
         </div>
-
-        <div className="relative mx-auto w-full min-w-0 max-w-xl lg:max-w-none">
-          <HeroGoalScene />
-        </div>
       </div>
     </section>
+
   );
 }
 
