@@ -36,7 +36,10 @@ const isikukood = (label: string) =>
     .refine((v) => /^\d{11}$/.test(v), `${label} peab olema 11 numbrit.`)
     .refine((v) => !/^\d{11}$/.test(v) || isValidIsikukood(v), `${label} ei ole korrektne.`);
 
+export const TRAINING_GROUPS = ["2014/2015", "2015/2016", "2017", "2019/2020"] as const;
+
 export const registrationSchema = z.object({
+  group: z.enum(TRAINING_GROUPS, { message: "Vali treeninggrupp." }),
   childName: required("Lapse nimi", 100),
   childCode: isikukood("Lapse isikukood"),
   parentName: required("Vanema nimi", 100),

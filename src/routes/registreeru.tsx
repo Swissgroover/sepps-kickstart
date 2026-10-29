@@ -6,7 +6,7 @@ import { Send, Check, CheckCircle2, AlertCircle } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { registrationSchema, type RegistrationInput } from "@/lib/registration";
+import { registrationSchema, TRAINING_GROUPS, type RegistrationInput } from "@/lib/registration";
 
 export const Route = createFileRoute("/registreeru")({
   head: () => ({
@@ -71,6 +71,7 @@ function RegistrationForm() {
           email: r.email,
           replyto: r.email,
           botcheck: "",
+          Treeninggrupp: r.group,
           "Lapse nimi": r.childName,
           "Lapse isikukood": r.childCode,
           "Vanema nimi": r.parentName,
@@ -102,6 +103,25 @@ function RegistrationForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 space-y-4">
       <p className="text-xs text-foreground/60">Tärniga (*) märgitud väljad on kohustuslikud.</p>
+      <div>
+        <label htmlFor="reg-group" className="mb-1.5 block text-sm font-medium">
+          Treeninggrupp<span className="text-primary"> *</span>
+        </label>
+        <select
+          id="reg-group"
+          className={inputCls}
+          aria-invalid={!!errors.group}
+          aria-required="true"
+          aria-describedby={errors.group ? "reg-group-err" : undefined}
+          {...register("group")}
+        >
+          <option value="" className="bg-card text-foreground">Vali treeninggrupp</option>
+          {TRAINING_GROUPS.map((g) => (
+            <option key={g} value={g} className="bg-card text-foreground">{g}</option>
+          ))}
+        </select>
+        {errors.group && <p id="reg-group-err" className="mt-1 text-xs text-destructive">{errors.group.message}</p>}
+      </div>
       {fields.map((f) => {
         const err = errors[f.name]?.message;
         const id = `reg-${f.name}`;
