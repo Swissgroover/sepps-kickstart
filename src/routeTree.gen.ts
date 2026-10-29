@@ -15,6 +15,7 @@ import { Route as KlubiRouteImport } from './routes/klubi'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as RegistreeruRouteImport } from './routes/registreeru'
 import { Route as VormidRouteImport } from './routes/vormid'
+import { Route as ApiPublicRegisterRouteImport } from './routes/api/public/register'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const VormidRoute = VormidRouteImport.update({
   path: '/vormid',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicRegisterRoute = ApiPublicRegisterRouteImport.update({
+  id: '/api/public/register',
+  path: '/api/public/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
   '/vormid': typeof VormidRoute
+  '/api/public/register': typeof ApiPublicRegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
   '/vormid': typeof VormidRoute
+  '/api/public/register': typeof ApiPublicRegisterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/registreeru': typeof RegistreeruRoute
   '/vormid': typeof VormidRoute
+  '/api/public/register': typeof ApiPublicRegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/builder' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+    | '/'
+    | '/builder'
+    | '/klubi'
+    | '/kontakt'
+    | '/registreeru'
+    | '/vormid'
+    | '/api/public/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/builder' | '/klubi' | '/kontakt' | '/registreeru' | '/vormid'
+  to:
+    | '/'
+    | '/builder'
+    | '/klubi'
+    | '/kontakt'
+    | '/registreeru'
+    | '/vormid'
+    | '/api/public/register'
   id:
     | '__root__'
     | '/'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/registreeru'
     | '/vormid'
+    | '/api/public/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   RegistreeruRoute: typeof RegistreeruRoute
   VormidRoute: typeof VormidRoute
+  ApiPublicRegisterRoute: typeof ApiPublicRegisterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VormidRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/register': {
+      id: '/api/public/register'
+      path: '/api/public/register'
+      fullPath: '/api/public/register'
+      preLoaderRoute: typeof ApiPublicRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   RegistreeruRoute: RegistreeruRoute,
   VormidRoute: VormidRoute,
+  ApiPublicRegisterRoute: ApiPublicRegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
