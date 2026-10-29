@@ -5,7 +5,7 @@ import { Marquee } from "@/components/site/Marquee";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { HeroGoalScene } from "@/components/site/HeroGoalScene";
+import heroTeam from "@/assets/hero-team.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,24 +35,21 @@ function Hero() {
       .from(".hero-cta", { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.1 }, "-=0.4")
       .from(".hero-meta", { autoAlpha: 0, y: 10, duration: 0.6, stagger: 0.08 }, "-=0.4");
 
-    gsap.to(".hero-pitch", {
-      yPercent: 8,
-      ease: "none",
-      scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true },
-    });
   }, []);
 
   return (
     <section ref={ref} className="hero-root relative overflow-hidden bg-ink">
-      <div className="hero-pitch absolute inset-0 text-primary">
-        <PitchBackground />
-      </div>
-      <div className="absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-primary/30 blur-3xl" />
-      <div className="absolute -right-20 bottom-0 h-[360px] w-[360px] rounded-full bg-pitch-glow/20 blur-3xl" />
+      <img
+        src={heroTeam.url}
+        alt="JK SEPPS meeskond"
+        className="absolute inset-0 h-full w-full object-cover object-[28%_30%] sm:object-[40%_30%]"
+      />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
         <div className="flex flex-col gap-8">
-          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight">
+
+          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85] tracking-tight [text-shadow:0_2px_18px_rgba(0,0,0,0.65)]">
             <span className="block">
               <span className="hero-word inline-block">Kasva</span>
             </span>
@@ -64,33 +61,30 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="hero-sub max-w-xl text-base text-foreground/70 sm:text-lg">
+          <p className="hero-sub max-w-xl text-base text-foreground/70 [text-shadow:0_1px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.7)] sm:text-lg">
             JK SEPPSis on iga laps oluline. Pakume kvaliteetseid treeninguid, põnevaid võistlusi ja toetavat keskkonda, kus areneb nii jalgpallur kui ka inimene.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
             <Link
               to="/registreeru"
-              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
               Registreeru trenni
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/vormid"
-              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
               <Shirt size={16} /> Telli vorm
             </Link>
           </div>
 
         </div>
-
-        <div className="relative mx-auto w-full min-w-0 max-w-xl lg:max-w-none">
-          <HeroGoalScene />
-        </div>
       </div>
     </section>
+
   );
 }
 
