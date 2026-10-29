@@ -108,7 +108,7 @@ function FeatureCards() {
           title={
             <>
               Tut
-              <span className="text-primary">vavaks</span> meie klubiga
+              <span className="text-primary">vaks</span> meie klubiga
             </>
           }
         >
