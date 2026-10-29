@@ -75,7 +75,7 @@ function Hero() {
             </Link>
             <Link
               to="/vormid"
-              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white/10"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
               <Shirt size={16} /> Telli vorm
             </Link>
