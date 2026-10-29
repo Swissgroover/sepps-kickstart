@@ -42,7 +42,7 @@ function Hero() {
       <img
         src={heroTeam.url}
         alt="JK SEPPS meeskond"
-        className="absolute inset-0 h-full w-full object-cover object-[40%_30%]"
+        className="absolute inset-0 h-full w-full object-cover object-[28%_30%] sm:object-[40%_30%]"
       />
 
 
