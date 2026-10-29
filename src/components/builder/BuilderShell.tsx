@@ -9,7 +9,7 @@ import { Toaster } from "sonner";
 export function BuilderShell() {
   return (
     <BuilderProvider>
-      <div className="dark relative min-h-screen overflow-hidden bg-[#05060d] text-white">
+      <div className="relative min-h-screen overflow-hidden bg-[#05060d] text-white">
         {/* ambient background */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <div className="absolute -left-32 top-0 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px]" />
