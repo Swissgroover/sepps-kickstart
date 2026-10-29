@@ -152,20 +152,20 @@ function AboutTeaser() {
             eyebrow="Klubist"
             title={
               <>
-                Pall, kirg, <span className="text-primary">perekond.</span>
+                Meie oleme <span className="text-primary">JK SEPPS</span>
               </>
             }
           >
-            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi, kus aitame lastel ja noortel avastada jalgpalli võlu. Arendame tehnilisi oskusi, meeskonnatööd, enesekindlust ja sportlikke väärtusi, mis saadavad neid kogu eluks.
+            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Meile on oluline, et laps õpiks jalgpalli mängima ja tahaks ka järgmisesse trenni tulla. Harjutame palliga, õpime koos mängima ning saame kogemusi nii võitudest kui ka kaotustest.
           </SectionHeading>
         </Reveal>
         <Reveal delay={0.15}>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { k: "Distsipliin", v: "Õpime olema täpsed, pühendunud ja austama nii meeskonnakaaslasi kui ka vastaseid." },
-              { k: "Tehnika", v: "Iga treening on võimalus õppida midagi uut ja saada enesekindlamaks palliga." },
-              { k: "Meeskond", v: "Koos toetame üksteist, õpime koostööd ning tähistame ühiseid õnnestumisi." },
-              { k: "Rõõm", v: "Armastus jalgpalli vastu on parim motivatsioon arenemiseks." },
+              { k: "Pallioskused", v: "Harjutame söötmist, palli valdamist ja pealelööke. Uued oskused tulevad proovides ja harjutades." },
+              { k: "Meeskond", v: "Õpime kaaslastega arvestama ja üksteist aitama. Hea sööt ja kaaslase õnnestumine väärivad samuti kiitust." },
+              { k: "Kokkulepped", v: "Tuleme õigeks ajaks trenni, kuulame treenerit ning austame kaaslasi ja vastaseid." },
+              { k: "Mängurõõm", v: "Pingutame ja võtame mängu tõsiselt, aga jätame ruumi ka naerule. Tahame, et lastel oleks koos hea mängida." },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card/80 p-5">
                 <div className="font-display text-2xl uppercase text-primary">{x.k}</div>
