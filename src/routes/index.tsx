@@ -80,20 +80,23 @@ function FeatureCards() {
     {
       to: "/klubi",
       icon: Trophy,
-      title: "Klubi lugu",
-      desc: "Kes me oleme, mille eest mängime ja kuhu liigume.",
-    },
-    {
-      to: "/vormid",
-      icon: Shirt,
-      title: "Treening- ja võistlusvorm",
-      desc: "Telli klubi vormid otse iSport poest.",
+      title: "Meie klubi",
+      desc: "Loe, kes me oleme ja mida laste treenimisel oluliseks peame.",
+      link: "Tutvu klubiga",
     },
     {
       to: "/registreeru",
       icon: UserPlus,
       title: "Tule trenni",
-      desc: "Saada e-kiri ja liitu järgmise trenniga.",
+      desc: "Kirjuta meile ja leiame lapsele sobiva treeninggrupi.",
+      link: "Registreeru trenni",
+    },
+    {
+      to: "/vormid",
+      icon: Shirt,
+      title: "Klubivorm",
+      desc: "Meie treening- ja võistlusvormid leiad iSporti e-poest.",
+      link: "Vaata vorme",
     },
   ] as const;
 
@@ -101,40 +104,10 @@ function FeatureCards() {
     <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6">
       <Reveal>
         <SectionHeading
-          eyebrow="Liigu edasi"
+          eyebrow="Järgmine samm"
           title={
             <>
-              Sinu <span className="text-primary">jalgpalliteekond </span> 
-               algab siit.
-            </>
-          }
-        >
-          Vali endale sobiv esimene samm – meie juures leiab oma koha iga noor jalgpallihuviline.
-        </SectionHeading>
-      </Reveal>
-
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {cards.map((c, i) => (
-          <Reveal key={c.to} delay={i * 0.1}>
-            <Link
-              to={c.to}
-              className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-card p-8 transition-colors hover:border-primary/60"
-            >
-              <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-primary/0 blur-3xl transition-colors duration-500 group-hover:bg-primary/30" />
-              <c.icon className="text-primary" size={28} />
-              <h3 className="mt-6 font-display text-3xl uppercase tracking-tight">{c.title}</h3>
-              <p className="mt-3 text-sm text-foreground/70">{c.desc}</p>
-              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                Vaata{" "}
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </div>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
+              Tut
 
 function AboutTeaser() {
   return (
