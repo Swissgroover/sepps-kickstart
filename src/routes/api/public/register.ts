@@ -59,29 +59,37 @@ export const Route = createFileRoute("/api/public/register")({
         // Honeypot filled → pretend success, send nothing.
         if (parsed.data.website) return json({ ok: true });
 
-        const apiKey = process.env.RESEND_API_KEY;
-        const from = process.env.REGISTRATION_FROM_EMAIL;
-        if (!apiKey || !from) {
-          console.error(`[register] not configured: RESEND_API_KEY ${apiKey ? "set" : "MISSING"}, REGISTRATION_FROM_EMAIL ${from ? "set" : "MISSING"}`);
+        const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+        if (!accessKey) {
+          console.error("[register] not configured: WEB3FORMS_ACCESS_KEY MISSING");
           return json({ ok: false, error: "not_configured" }, 503);
         }
 
-        const { text, html } = body(parsed.data);
-        const res = await fetch("https://api.resend.com/emails", {
+        const r = parsed.data;
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
-            from,
-            to: ["info@sepps.eu"],
-            reply_to: parsed.data.email,
+            access_key: accessKey,
             subject: "Trenni registreerimine",
-            text,
-            html,
+            from_name: "JK SEPPS registreerimine",
+            email: r.email,
+            replyto: r.email,
+            "Lapse nimi": r.childName,
+            "Lapse isikukood": r.childCode,
+            "Vanema nimi": r.parentName,
+            "Vanema isikukood": r.parentCode,
+            Kontakttelefon: r.phone,
+            "Vanema e-post": r.email,
+            "Kodune aadress": r.address,
+            "Tervislikud eripärad": r.health || "-",
+            "Varasem kogemus": r.experience || "-",
+            Lisainfo: r.notes || "-",
           }),
         });
-        if (!res.ok) {
-          // Resend's error body names the cause (unverified domain, bad key, bad sender) — no form data.
-          console.error(`[register] Resend failed [${res.status}]: ${await res.text()}`);
+        const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null;
+        if (!res.ok || !out?.success) {
+          console.error(`[register] Web3Forms failed [${res.status}]: ${out?.message ?? "no message"}`);
           return json({ ok: false, error: "send_failed", status: res.status }, 502);
         }
         return json({ ok: true });
