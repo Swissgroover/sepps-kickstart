@@ -3,6 +3,8 @@ import { ArrowRight, Shirt, UserPlus, Trophy } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { RegistrationForm } from "@/components/site/RegistrationForm";
+import { registrationOnlyMode } from "@/lib/registration-only";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,8 +22,34 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: Index,
+  component: registrationOnlyMode ? RegistrationOnlyHome : Index,
 });
+
+function RegistrationOnlyHome() {
+  return (
+    <div className="mx-auto w-full max-w-2xl px-4 py-14 sm:px-6 sm:py-20">
+      <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-6xl">
+        Tule JK SEPPSi <span className="text-primary">trenni</span>
+      </h1>
+      <p className="mt-5 text-base text-foreground/70 sm:text-lg">
+        Täida vorm ja saada meile lapse registreerimissoov. Võtame sinuga ühendust ja lepime kokku trenni tulemise.
+      </p>
+
+      <div className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-card p-6 sm:p-8">
+        <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/30 blur-3xl" />
+        <div className="relative">
+          <RegistrationForm />
+        </div>
+      </div>
+
+      <div className="mt-8 rounded-3xl border border-white/10 bg-ink/60 p-6 text-sm text-foreground/70">
+        Eelistad helistada? Võta ühendust õppejuhi Merlyn Leimaniga aadressil{" "}
+        <a className="text-primary hover:underline" href="mailto:merlyn@sepps.eu">merlyn@sepps.eu</a>{" "}
+        või telefonil <a className="text-primary hover:underline" href="tel:+37256287449">+372 56 28 7449</a>.
+      </div>
+    </div>
+  );
+}
 
 function Hero() {
   return (

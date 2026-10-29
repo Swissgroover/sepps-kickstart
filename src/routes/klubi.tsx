@@ -1,10 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { Shield, Target, Users, Heart } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { registrationOnlyMode } from "@/lib/registration-only";
 
 export const Route = createFileRoute("/klubi")({
+  beforeLoad: () => {
+    if (registrationOnlyMode) throw redirect({ to: "/" });
+  },
   head: () => ({
     meta: [
       { title: "Klubi — JK SEPPS" },
