@@ -61,7 +61,10 @@ export const Route = createFileRoute("/api/public/register")({
 
         const apiKey = process.env.RESEND_API_KEY;
         const from = process.env.REGISTRATION_FROM_EMAIL;
-        if (!apiKey || !from) return json({ ok: false, error: "not_configured" }, 503);
+        if (!apiKey || !from) {
+          console.error(`[register] not configured: RESEND_API_KEY ${apiKey ? "set" : "MISSING"}, REGISTRATION_FROM_EMAIL ${from ? "set" : "MISSING"}`);
+          return json({ ok: false, error: "not_configured" }, 503);
+        }
 
         const { text, html } = body(parsed.data);
         const res = await fetch("https://api.resend.com/emails", {
@@ -76,7 +79,11 @@ export const Route = createFileRoute("/api/public/register")({
             html,
           }),
         });
-        if (!res.ok) return json({ ok: false, error: "send_failed" }, 502);
+        if (!res.ok) {
+          // Resend's error body names the cause (unverified domain, bad key, bad sender) — no form data.
+          console.error(`[register] Resend failed [${res.status}]: ${await res.text()}`);
+          return json({ ok: false, error: "send_failed", status: res.status }, 502);
+        }
         return json({ ok: true });
       },
     },
