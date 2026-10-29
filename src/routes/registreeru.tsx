@@ -1,14 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Send, Check, CheckCircle2, AlertCircle } from "lucide-react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { Check } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { registrationSchema, TRAINING_GROUPS, type RegistrationInput } from "@/lib/registration";
+import { RegistrationForm } from "@/components/site/RegistrationForm";
+import { registrationOnlyMode } from "@/lib/registration-only";
 
 export const Route = createFileRoute("/registreeru")({
+  beforeLoad: () => {
+    if (registrationOnlyMode) throw redirect({ to: "/" });
+  },
   head: () => ({
     meta: [
       { title: "Registreeru trenni — JK SEPPS" },
