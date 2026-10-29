@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site/SiteHeader";
 import { SiteFooter } from "../components/site/SiteFooter";
+import { registrationOnlyMode } from "../lib/registration-only";
 
 function NotFoundComponent() {
   return (
@@ -130,6 +131,29 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {bare ? (
         <Outlet />
+      ) : registrationOnlyMode ? (
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
+          <header className="border-b border-white/10 bg-background/70 backdrop-blur-xl">
+            <div className="mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6">
+              <Link to="/" className="group flex items-center gap-2">
+                <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <span className="font-display text-lg leading-none">S</span>
+                  <span className="absolute inset-0 -z-10 rounded-full bg-primary opacity-60 blur-md transition-opacity group-hover:opacity-100" />
+                </span>
+                <span className="font-display text-xl tracking-wider">JK SEPPS</span>
+              </Link>
+            </div>
+          </header>
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <footer className="border-t border-white/10">
+            <div className="mx-auto flex max-w-7xl flex-col items-center gap-1 px-4 py-6 text-center text-sm text-foreground/60 sm:px-6">
+              <span className="font-display text-lg tracking-wider text-foreground">JK SEPPS</span>
+              <a className="text-primary hover:underline" href="mailto:info@sepps.eu">info@sepps.eu</a>
+            </div>
+          </footer>
+        </div>
       ) : (
         <div className="flex min-h-screen flex-col bg-background text-foreground">
           <SiteHeader />
