@@ -49,7 +49,7 @@ function Hero() {
           </h1>
 
           <p className="hero-sub max-w-xl text-base text-foreground/70 [text-shadow:0_1px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.7)] sm:text-lg">
-            JK SEPPSis on iga laps oluline. Pakume kvaliteetseid treeninguid, põnevaid võistlusi ja toetavat keskkonda, kus areneb nii jalgpallur kui ka inimene.
+            Meie juures saavad lapsed jalgpalli mängida, uusi oskusi õppida ja meeskonnast rõõmu tunda. Trennis pingutame koos ning mängudel hoiame üksteisele pöialt.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
