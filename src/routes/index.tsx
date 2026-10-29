@@ -32,7 +32,7 @@ function RegistrationOnlyHome() {
         Tule JK SEPPSi <span className="text-primary">trenni</span>
       </h1>
       <p className="mt-5 text-base text-foreground/70 sm:text-lg">
-        Täida vorm ja saada meile lapse registreerimissoov. Võtame sinuga ühendust ja lepime kokku trenni tulemise.
+        Täida vorm ja registreeri laps treeningutele!
       </p>
 
       <div className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-card p-6 sm:p-8">
