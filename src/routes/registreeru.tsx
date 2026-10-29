@@ -47,17 +47,44 @@ function RegistrationForm() {
     mode: "onTouched",
   });
 
-  const onSubmit = async (data: RegistrationInput) => {
+  const onSubmit = async (input: RegistrationInput) => {
     if (status === "sending") return;
+    const parsed = registrationSchema.safeParse(input);
+    if (!parsed.success) return;
+    const r = parsed.data;
     setStatus("sending");
+    // Honeypot filled → pretend success, send nothing.
+    if (r.website) {
+      setStatus("sent");
+      return;
+    }
     try {
-      const res = await fetch("/api/public/register", {
+      const cfg = await fetch("/api/public/register").then((x) => x.json()).catch(() => null);
+      if (!cfg?.ok || !cfg.key) throw new Error("not_configured");
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: cfg.key,
+          subject: "Trenni registreerimine",
+          from_name: "JK SEPPS registreerimine",
+          email: r.email,
+          replyto: r.email,
+          botcheck: "",
+          "Lapse nimi": r.childName,
+          "Lapse isikukood": r.childCode,
+          "Vanema nimi": r.parentName,
+          "Vanema isikukood": r.parentCode,
+          Kontakttelefon: r.phone,
+          "Vanema e-post": r.email,
+          "Kodune aadress": r.address,
+          "Tervislikud eripärad": r.health || "-",
+          "Varasem kogemus": r.experience || "-",
+          Lisainfo: r.notes || "-",
+        }),
       });
       const out = await res.json().catch(() => null);
-      setStatus(res.ok && out?.ok ? "sent" : "error");
+      setStatus(res.ok && out?.success ? "sent" : "error");
     } catch {
       setStatus("error");
     }
