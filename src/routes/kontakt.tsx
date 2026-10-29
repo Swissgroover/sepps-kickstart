@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, Phone, Facebook, ExternalLink } from "lucide-react";
-import { PitchBackground } from "@/components/site/PitchBackground";
-import { Reveal } from "@/components/site/Reveal";
+import { PageIntro } from "@/components/site/PageIntro";
 import { SectionHeading } from "@/components/site/SectionHeading";
 
 export const Route = createFileRoute("/kontakt")({
@@ -11,6 +10,8 @@ export const Route = createFileRoute("/kontakt")({
       { name: "description", content: "Võta JK SEPPSi meeskonnaga ühendust — Merlyn, Madis, Kaiti ja Oliver." },
       { property: "og:title", content: "Kontakt — JK SEPPS" },
       { property: "og:description", content: "Kontaktid ja klubi meeskond." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: KontaktPage,
@@ -26,66 +27,44 @@ const people = [
 function KontaktPage() {
   return (
     <div>
-      <section className="relative overflow-hidden bg-ink">
-        <div className="absolute inset-0 text-primary"><PitchBackground /></div>
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32">
-          <Reveal>
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">Kontakt</div>
-            <h1 className="font-display text-6xl uppercase leading-[0.9] tracking-tight sm:text-8xl">
-              Räägime <span className="text-primary">jalgpallist.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg text-foreground/70">
-              Küsimused, registreerimine, koostöö — meeskond vastab heameelega.
-              Üldaadress on <a className="text-primary hover:underline" href="mailto:info@sepps.eu">info@sepps.eu</a>.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageIntro eyebrow="Kontakt" title="Võta meiega ühendust">
+        Küsimused, registreerimine või koostöö — vastame heameelega. Üldaadress on{" "}
+        <a className="text-primary hover:underline" href="mailto:info@sepps.eu">info@sepps.eu</a>.
+      </PageIntro>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <Reveal>
-          <SectionHeading eyebrow="Meeskond" title={<>Inimesed klubi <span className="text-primary">taga</span></>} />
-        </Reveal>
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {people.map((p, i) => (
-            <Reveal key={p.mail} delay={i * 0.08}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-card p-7 transition-colors hover:border-primary/60">
-                <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/30" />
-                <div className="relative">
-                  <div className="font-display text-3xl uppercase tracking-tight">{p.name}</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.2em] text-foreground/60">{p.role}</div>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <a href={`mailto:${p.mail}`} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-                      <Mail size={14} /> {p.mail}
-                    </a>
-                    <a href={`tel:${p.tel.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold transition-colors hover:bg-white/10">
-                      <Phone size={14} /> {p.tel}
-                    </a>
-                  </div>
-                </div>
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+        <SectionHeading eyebrow="Meeskond" title="Inimesed klubi taga" />
+        <ul className="mt-8 divide-y divide-border border-y border-border">
+          {people.map((p) => (
+            <li key={p.mail} className="grid gap-2 py-5 md:grid-cols-[1.2fr_1fr_1fr] md:items-center">
+              <div>
+                <div className="font-semibold">{p.name}</div>
+                <div className="text-sm text-muted-foreground">{p.role}</div>
               </div>
-            </Reveal>
+              <a href={`mailto:${p.mail}`} className="inline-flex items-center gap-2 text-primary hover:underline">
+                <Mail size={15} /> {p.mail}
+              </a>
+              <a href={`tel:${p.tel.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 hover:text-primary">
+                <Phone size={15} /> {p.tel}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {[
+            { href: "https://www.facebook.com/p/JK-SEPPS-100084304296076/", k: "Jälgi meid", t: "Facebook", I: Facebook },
+            { href: "https://isport.ee/tootekategooria/klubid/jk-sepps/", k: "Klubivormid", t: "iSporti e-pood", I: ExternalLink },
+          ].map(({ href, k, t, I }) => (
+            <a key={href} href={href} target="_blank" rel="noreferrer" className="flex items-center justify-between rounded-2xl border border-border bg-soft p-5 transition-colors hover:border-primary">
+              <div>
+                <div className="text-sm text-muted-foreground">{k}</div>
+                <div className="font-semibold">{t}</div>
+              </div>
+              <I className="text-primary" size={20} />
+            </a>
           ))}
         </div>
-
-        <Reveal>
-          <div className="mt-14 grid gap-4 sm:grid-cols-2">
-            <a href="https://www.facebook.com/p/JK-SEPPS-100084304296076/" target="_blank" rel="noreferrer" className="group flex items-center justify-between rounded-3xl border border-white/10 bg-ink p-6 transition-colors hover:border-primary/60">
-              <div>
-                <div className="text-xs uppercase tracking-[0.2em] text-foreground/60">Jälgi</div>
-                <div className="font-display text-3xl uppercase">Facebook</div>
-              </div>
-              <Facebook className="text-primary transition-transform group-hover:scale-110" />
-            </a>
-            <a href="https://isport.ee/tootekategooria/klubid/jk-sepps/" target="_blank" rel="noreferrer" className="group flex items-center justify-between rounded-3xl border border-white/10 bg-ink p-6 transition-colors hover:border-primary/60">
-              <div>
-                <div className="text-xs uppercase tracking-[0.2em] text-foreground/60">Pood</div>
-                <div className="font-display text-3xl uppercase">iSport · vormid</div>
-              </div>
-              <ExternalLink className="text-primary transition-transform group-hover:scale-110" />
-            </a>
-          </div>
-        </Reveal>
       </section>
     </div>
   );
