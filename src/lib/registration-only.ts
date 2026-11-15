@@ -8,4 +8,4 @@
  *
  * Täisveebi taastamiseks muuda väärtus false-ks ja avalda leht uuesti.
  */
-export const registrationOnlyMode = true;
+export const registrationOnlyMode = false;
