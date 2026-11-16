@@ -1,5 +1,5 @@
-import kiveston from "@/assets/supporters/kiveston.webp.asset.json";
-import saaremaa from "@/assets/supporters/saaremaa-logistika-kala.webp.asset.json";
+import kiveston from "@/assets/supporters/kiveston-white.png.asset.json";
+import saaremaa from "@/assets/supporters/saaremaa-logistika-kala-white.png.asset.json";
 import connecto from "@/assets/supporters/connecto.webp.asset.json";
 import smuuli from "@/assets/supporters/smuuli-laod.webp.asset.json";
 import hoia from "@/assets/supporters/hoia-homespa.webp.asset.json";
