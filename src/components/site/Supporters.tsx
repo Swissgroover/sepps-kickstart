@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { supporters, SUPPORTER_SPEED } from "@/lib/supporters";
 
@@ -9,8 +7,6 @@ export function Supporters() {
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLUListElement>(null);
   const animationRef = useRef<Animation | null>(null);
-  const pausedRef = useRef(false);
-  const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(true);
   const [copies, setCopies] = useState(1);
 
@@ -31,7 +27,6 @@ export function Supporters() {
         [{ transform: "translateX(0)" }, { transform: `translateX(-${width}px)` }],
         { duration: (width / SUPPORTER_SPEED) * 1000, iterations: Infinity, easing: "linear" },
       );
-      if (pausedRef.current) animation.pause();
       animationRef.current = animation;
     };
     const observer = new ResizeObserver(measure);
@@ -46,12 +41,6 @@ export function Supporters() {
     };
   }, []);
 
-  useEffect(() => {
-    pausedRef.current = paused;
-    if (paused) animationRef.current?.pause();
-    else animationRef.current?.play();
-  }, [paused]);
-
   if (supporters.length === 0) return null;
 
   const logos = (copy: boolean) => supporters.map((supporter) => (
@@ -65,14 +54,8 @@ export function Supporters() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading title={<span id="supporters-heading">Meie tegemisi <span className="text-primary">toetavad</span></span>} />
-          {!reduced && (
-            <Button variant="outline" size="sm" onClick={() => setPaused((value) => !value)} aria-controls="supporter-strip" aria-pressed={paused}>
-              {paused ? <Play /> : <Pause />}
-              {paused ? "Käivita logoriba" : "Peata logoriba"}
-            </Button>
-          )}
         </div>
-        <div ref={viewportRef} id="supporter-strip" className="supporter-viewport mt-10" data-motion={paused || reduced ? "paused" : "running"} tabIndex={0} role="region" aria-label="Toetajate logod">
+        <div ref={viewportRef} id="supporter-strip" className="supporter-viewport mt-10" data-motion={reduced ? "paused" : "running"} tabIndex={0} role="region" aria-label="Toetajate logod">
           <div ref={trackRef} className="supporter-track">
             <ul ref={groupRef} className="supporter-group">{logos(false)}</ul>
             {Array.from({ length: copies }, (_, index) => (

@@ -8,3 +8,7 @@ Email delivery was not retested: the preview has no Web3Forms configuration; the
 # Homepage supporters
 - [x] Add the supplied logos in one stable-ID list and a light-card strip before the footer.
 - [x] Verify 30 px/s motion, pause/resume, logo loading, reduced-motion scrolling and no page overflow at 390 and 757px; all eight focused tests pass.
+
+# Supporter deployment fix
+- [x] Replace Lovable-only logo URLs with real public files and remove pause/resume controls.
+- [x] All six local image requests return 200 on direct load and reload; continuous motion, reduced motion and mobile layout pass. Live Vercel deployment needs redeploying and was not accessed.
