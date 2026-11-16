@@ -14,12 +14,13 @@ export function SiteFooter() {
             <span className="font-display text-2xl tracking-wider">JK SEPPS</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">
-            Jalgpalliklubi, mis kasvatab mängijaid kirega, distsipliiniga ja rõõmuga.
+            Parem mängija. Kõrgem tase. Suurem võimalus.
           </p>
         </div>
         <div>
           <h4 className="font-display text-sm uppercase tracking-[0.2em] text-foreground/60">Liigu</h4>
           <ul className="mt-4 space-y-2 text-sm">
+            <li><Link to="/treeningud" className="hover:text-primary">Treeningud</Link></li>
             <li><Link to="/klubi" className="hover:text-primary">Klubi</Link></li>
             <li><Link to="/vormid" className="hover:text-primary">Vormid</Link></li>
             <li><Link to="/registreeru" className="hover:text-primary">Registreeru trenni</Link></li>

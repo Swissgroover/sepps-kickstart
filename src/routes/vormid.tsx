@@ -1,4 +1,5 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { ExternalLink, Shirt, Trophy, Truck } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/vormid")({
       { name: "description", content: "Telli JK SEPPS treening- ja võistlusvorm otse iSport poest." },
       { property: "og:title", content: "Vormid — JK SEPPS" },
       { property: "og:description", content: "Treeningvorm, võistlusvorm — kõik klubi värvides." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: VormidPage,
@@ -52,6 +55,10 @@ function VormidPage() {
             <p className="mt-6 max-w-2xl text-lg text-foreground/70">
              JK SEPPSi treening- ja võistlusvarustuse saad mugavalt tellida meie koostööpartneri iSporti e-poest. Vali sobiv suurus ning ülejäänu eest hoolitseb juba iSport.
             </p>
+            <p className="mt-4 max-w-2xl text-lg text-foreground/70">Uutel mängijatel palume tutvuda vormi tellimise juhistega.</p>
+            <Button asChild className="mt-6 h-auto whitespace-normal rounded-full px-6 py-3">
+              <Link to="/vormid" hash="kuidas-kaib">Vaata tellimisjuhiseid</Link>
+            </Button>
           </Reveal>
         </div>
       </section>
@@ -59,8 +66,8 @@ function VormidPage() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid gap-6 md:grid-cols-2">
           {[
-            { title: "Treeningvorm", desc: "Igapäevaks trenniks. Hingav, vastupidav, klubi värvides.", icon: Shirt, accent: "var(--pitch)" },
-            { title: "Võistlusvorm", desc: "Mängupäevaks. Ametlik komplekt klubi sümboolikaga.", icon: Trophy, accent: "var(--pitch-deep)" },
+            { title: "Treeningvorm", desc: "Igapäevasteks treeninguteks.", icon: Shirt, accent: "var(--pitch)" },
+            { title: "Võistlusvorm", desc: "Klubi esindamiseks, võistlusteks.", icon: Trophy, accent: "var(--pitch-deep)" },
           ].map((c, i) => (
             <Reveal key={c.title} delay={i * 0.1}>
               <a
@@ -70,7 +77,7 @@ function VormidPage() {
                 className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-card p-8 transition-colors hover:border-primary/60"
               >
                 <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/30" />
-                <div className="grid grid-cols-[1fr_auto] items-start gap-6">
+                <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-[1fr_auto]">
                   <div>
                     <c.icon className="text-primary" size={28} />
                     <h3 className="mt-5 font-display text-4xl uppercase">{c.title}</h3>
@@ -89,16 +96,22 @@ function VormidPage() {
         </div>
       </section>
 
-      <section className="bg-ink">
+      <section id="kuidas-kaib" className="scroll-mt-24 bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
           <Reveal>
             <SectionHeading eyebrow="Tellimine" title={<>Kuidas <span className="text-primary">käib</span></>} />
           </Reveal>
+          <Reveal>
+            <div className="mt-10 border-l-4 border-primary bg-card p-6 sm:p-8">
+              <h3 className="font-display text-3xl uppercase">Uus mängija – kontakteeru treeneriga ja vali välja vorminumber!</h3>
+              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-foreground/70">Võta ühendust treeneriga ning paku välja numbreid, mis sulle meeldivad. Treener kontrollib numbri saadavust ning annab tagasisidet. Palume valida vorminumbri pärast treeneriga konsulteerimist.</p>
+            </div>
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { n: "01", t: "Vali", d: "Mine iSport poodi ja vali sobivad esemed klubi kategoorias." },
-              { n: "02", t: "Suurus", d: "Pane tähele suurustabelit. Kahtluse korral küsi treenerilt." },
-              { n: "03", t: "Kohaletoimetus", d: "iSport toimetab tellimuse kokkulepitud viisil kohale." },
+              { n: "01", t: "Vali esemed ja sobiv suurus", d: "Mine iSpordi lehel oma klubi e-poodi ning vali soovitud esemed. Sobiva suuruse valimisel aitab suurustabel. Kahtluse korral küsi nõu treenerilt või e-poe klienditeeninduselt." },
+              { n: "02", t: "Probleemide korral", d: "iSport on JK SEPPSi treening- ja võistlusvormide maaletooja. Kõigi toodetega seotud küsimuste ja probleemide korral palume pöörduda otse iSpordi klienditeeninduse poole." },
+              { n: "03", t: "Kohaletoimetus", d: "Tellimus jõuab lapsevanema valitud pakiautomaati või toimetatakse kohale muul kokkulepitud viisil." },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 0.08}>
                 <div className="h-full rounded-3xl border border-white/10 bg-card p-6">
@@ -111,9 +124,9 @@ function VormidPage() {
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a href={SHOP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
-              <Truck size={16} /> Ava iSport pood
+              <Truck size={16} /> Ava iSpordi e-pood
             </a>
-            <a href="mailto:info@sepps.eu?subject=Vormi tellimine" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold transition-colors hover:bg-white/10">
+            <a href="mailto:jalgpall@sepps.eu" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold transition-colors hover:bg-white/10">
               Küsi abi
             </a>
           </div>

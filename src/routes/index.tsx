@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Shirt, UserPlus, Trophy } from "lucide-react";
+import { ArrowRight, Target, UserPlus, Trophy } from "lucide-react";
 import { PitchBackground } from "@/components/site/PitchBackground";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -20,6 +20,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Kirglik Eesti jalgpalliklubi. Trennid, võistlused ja vormid.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: registrationOnlyMode ? RegistrationOnlyHome : Index,
@@ -72,27 +74,27 @@ function Hero() {
               <span className="hero-word inline-block text-stroke">koos</span>
             </span>
             <span className="block overflow-hidden">
-              <span className="hero-word inline-block text-primary">SEPPS-iga.</span>
+              <span className="hero-word inline-block text-primary">SEPPSiga.</span>
             </span>
           </h1>
 
           <p className="hero-sub max-w-xl text-base text-foreground/70 [text-shadow:0_1px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.7)] sm:text-lg">
-            Meie juures saavad lapsed jalgpalli mängida, uusi oskusi õppida ja meeskonnast rõõmu tunda. Trennis pingutame koos ning mängudel hoiame üksteisele pöialt.
+            JK SEPPSi keskmes on mängija areng. Meie eesmärk on luua noortele keskkond, mis toetab järjepidevat arengut, seab kõrged standardid ja aitab mängijal liikuda samm-sammult järgmisele tasemele.
           </p>
 
           <div className="flex flex-wrap items-stretch gap-3">
             <Link
-              to="/registreeru"
+              to="/registreeru" hash="registreerimisvorm"
               className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
-              Registreeru trenni
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              Registreeru treeningutele
+               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              to="/vormid"
+              to="/treeningud"
               className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-foreground shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-colors hover:bg-white/10"
             >
-              <Shirt size={16} /> Telli vorm
+              <Target size={16} /> Tutvu meie treeningutega
             </Link>
           </div>
 
@@ -106,25 +108,28 @@ function Hero() {
 function FeatureCards() {
   const cards = [
     {
+      to: "/treeningud",
+      hash: "",
+      icon: Target,
+      title: "Treeningud",
+      desc: "Vanusele ja arengutasemele sobiv treeningkeskkond, kus iga treening on osa pikemast arenguprotsessist.",
+      link: "Meie treeningud",
+    },
+    {
       to: "/klubi",
+      hash: "",
       icon: Trophy,
-      title: "Meie klubi",
-      desc: "Loe, kes me oleme ja mida laste treenimisel oluliseks peame.",
+      title: "Meie lähenemine",
+      desc: "Tutvu põhimõtetega, mille järgi JK SEPPSis mängijaid arendame.",
       link: "Tutvu klubiga",
     },
     {
       to: "/registreeru",
+      hash: "registreerimisvorm",
       icon: UserPlus,
-      title: "Tule trenni",
-      desc: "Kirjuta meile ja leiame lapsele sobiva treeninggrupi.",
-      link: "Registreeru trenni",
-    },
-    {
-      to: "/vormid",
-      icon: Shirt,
-      title: "Klubivorm",
-      desc: "Meie treening- ja võistlusvormid leiad iSporti e-poest.",
-      link: "Vaata vorme",
+      title: "Liitu JK SEPPSiga",
+      desc: "Kui lapsel on soov pingutada, jalgpallile pühenduda ja spordis edasi areneda, registreeri ta meie treeningutele.",
+      link: "Registreeru treeningutele",
     },
   ] as const;
 
@@ -135,12 +140,11 @@ function FeatureCards() {
           eyebrow="Järgmine samm"
           title={
             <>
-              Tut
-              <span className="text-primary">tavaks</span> meie klubiga
+              Sinu jalgpalliteekond <span className="text-primary">algab siit</span>
             </>
           }
         >
-          Tutvu meie tegemistega, leia info trenniga liitumise kohta või telli lapsele klubivorm.
+          Olenemata sellest, kas oled alles alustamas või juba aastaid mänginud, viib edasi soov saada paremaks. Meie ülesanne on luua selleks tugev treeningkeskkond, selge suund ja võimalused arenguks.
         </SectionHeading>
       </Reveal>
 
@@ -149,6 +153,7 @@ function FeatureCards() {
           <Reveal key={c.to} delay={i * 0.1}>
             <Link
               to={c.to}
+              hash={c.hash}
               className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-card p-8 transition-colors hover:border-primary/60"
             >
               <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-primary/0 blur-3xl transition-colors duration-500 group-hover:bg-primary/30" />
@@ -180,20 +185,20 @@ function AboutTeaser() {
             eyebrow="Klubist"
             title={
               <>
-                Meie oleme <span className="text-primary">JK SEPPS</span>
+                Areng sünnib <span className="text-primary">teadlikust tööst</span>
               </>
             }
           >
-            JK SEPPS on ERASPORDIKOOL SEPPSi jalgpalliklubi. Meile on oluline, et laps õpiks jalgpalli mängima ja tahaks ka järgmisesse trenni tulla. Harjutame palliga, õpime koos mängima ning saame kogemusi nii võitudest kui ka kaotustest.
+            Mängija areng on pikaajaline protsess. See nõuab head treeningkeskkonda, läbimõeldud tööd, järjepidevust ning valmisolekut iga päev õppida.
           </SectionHeading>
         </Reveal>
         <Reveal delay={0.15}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { k: "Pallioskused", v: "Harjutame söötmist, palli valdamist ja pealelööke. Uued oskused tulevad proovides ja harjutades." },
-              { k: "Meeskond", v: "Õpime kaaslastega arvestama ja üksteist aitama. Hea sööt ja kaaslase õnnestumine väärivad samuti kiitust." },
-              { k: "Kokkulepped", v: "Tuleme õigeks ajaks trenni, kuulame treenerit ning austame kaaslasi ja vastaseid." },
-              { k: "Mängurõõm", v: "Pingutame ja võtame mängu tõsiselt, aga jätame ruumi ka naerule. Tahame, et lastel oleks koos hea mängida." },
+              { k: "Areng", v: "Iga treening peab aitama mängijal midagi juurde õppida. Meie tähelepanu on pikaajalisel arengul, mitte ainult järgmise mängu tulemusel." },
+              { k: "Nõudlikkus", v: "Paremaks saamine nõuab pingutust. Seame mängijatele kõrged, kuid eakohased nõudmised ning suuname seeläbi ka neid endid iseendalt rohkemat ootama." },
+              { k: "Individuaalsus", v: "Kõik mängijad ei arene samas tempos ega ühtemoodi. Märkame mängija tugevusi ja arengukohti ning otsime võimalusi talle sobivate väljakutsete pakkumiseks." },
+              { k: "Ambitsioon", v: "Julgustame noori seadma suuri eesmärke. Kui mängijal on võimeid ja tahet järgmisele tasemele jõuda, tahame aidata tal selleks vajalikke samme teha." },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card/80 p-5">
                 <div className="font-display text-2xl uppercase text-primary">{x.k}</div>

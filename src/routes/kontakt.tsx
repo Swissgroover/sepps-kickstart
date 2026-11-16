@@ -15,16 +15,18 @@ export const Route = createFileRoute("/kontakt")({
       { name: "description", content: "Võta JK SEPPSi meeskonnaga ühendust — Merlyn, Madis, Kaiti ja Oliver." },
       { property: "og:title", content: "Kontakt — JK SEPPS" },
       { property: "og:description", content: "Kontaktid ja klubi meeskond." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: KontaktPage,
 });
 
 const people = [
-  { name: "Merlyn Leiman", role: "ERASPORDIKOOL SEPPSi õppejuht", mail: "merlyn@sepps.eu", tel: "+372 56 28 7449" },
-  { name: "Madis Sepp", role: "Peatreener", mail: "madis@sepps.eu", tel: "+372 53 36 3247" },
+  { name: "Merlyn Leiman", role: "ERASPORDIKOOL SEPPSi õppejuht · JK SEPPSi klubijuht / tegevjuht", mail: "merlyn@sepps.eu", tel: "+372 56 28 7449" },
+  { name: "Madis Sepp", role: "Peatreener · JK SEPPSi klubijuht", mail: "madis@sepps.eu", tel: "+372 53 36 3247" },
   { name: "Kaiti Enno", role: "Infojuht", mail: "info@sepps.eu", tel: "+372 54 51 1800" },
-  { name: "Oliver Moring", role: "Klienditoe- ja haldusspetsialist", mail: "sepps@sepps.eu", tel: "+372 53 00 6717" },
+  { name: "Oliver Moring", role: "Haldusjuht", mail: "sepps@sepps.eu", tel: "+372 53 00 6717" },
 ];
 
 function KontaktPage() {
@@ -39,8 +41,7 @@ function KontaktPage() {
               Räägime <span className="text-primary">jalgpallist.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-foreground/70">
-              Küsimused, registreerimine, koostöö — meeskond vastab heameelega.
-              Üldaadress on <a className="text-primary hover:underline" href="mailto:info@sepps.eu">info@sepps.eu</a>.
+              Küsimused, registreerimine, koostöö – meie meeskond vastab hea meelega. Kirjuta meile aadressil <a className="text-primary hover:underline" href="mailto:jalgpall@sepps.eu">jalgpall@sepps.eu</a> või <a className="text-primary hover:underline" href="mailto:info@sepps.eu">info@sepps.eu</a>.
             </p>
           </Reveal>
         </div>
@@ -57,7 +58,7 @@ function KontaktPage() {
                 <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/30" />
                 <div className="relative">
                   <div className="font-display text-3xl uppercase tracking-tight">{p.name}</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.2em] text-foreground/60">{p.role}</div>
+                  <div className="mt-1 text-xs uppercase leading-relaxed text-foreground/60">{p.role}</div>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <a href={`mailto:${p.mail}`} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                       <Mail size={14} /> {p.mail}

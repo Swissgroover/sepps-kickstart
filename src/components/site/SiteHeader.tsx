@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Avaleht" },
+  { to: "/treeningud", label: "Treeningud" },
   { to: "/klubi", label: "Klubi" },
   { to: "/vormid", label: "Vormid" },
-  { to: "/registreeru", label: "Registreeru" },
   { to: "/kontakt", label: "Kontakt" },
+  { to: "/registreeru", label: "Registreeru" },
 ] as const;
 
 export function SiteHeader() {
@@ -28,7 +30,7 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="group relative px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground data-[status=active]:text-foreground"
+              className="group relative px-2 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground data-[status=active]:text-foreground"
             >
               {item.label}
               <span className="pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-x-100 group-data-[status=active]:scale-x-100" />
@@ -41,13 +43,15 @@ export function SiteHeader() {
             Trenni!
           </Link>
         </nav>
-        <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 md:hidden"
+        <Button
+          variant="outline" size="icon"
+          className="h-10 w-10 border-border bg-transparent md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menüü"
+          aria-expanded={open}
         >
           {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        </Button>
       </div>
       {open && (
         <div className="border-t border-white/10 bg-background/95 md:hidden">
