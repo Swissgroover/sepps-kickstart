@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { RegistrationForm } from "@/components/site/RegistrationForm";
 import { registrationOnlyMode } from "@/lib/registration-only";
+import { Supporters } from "@/components/site/Supporters";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -218,6 +219,7 @@ function Index() {
       <Hero />
       <FeatureCards />
       <AboutTeaser />
+      <Supporters />
     </div>
   );
 }

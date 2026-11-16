@@ -64,6 +64,7 @@
   --color-pitch-glow: var(--pitch-glow);
   --color-ink: var(--ink);
   --color-chalk: var(--chalk);
+  --color-supporter-surface: var(--supporter-surface);
   --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 }
@@ -75,6 +76,7 @@
   --pitch-glow: oklch(0.72 0.18 250);
   --ink: oklch(0.13 0.014 260);
   --chalk: oklch(0.985 0.002 260);
+  --supporter-surface: oklch(1 0 0);
   --background: oklch(0.115 0.014 260);
   --foreground: oklch(0.985 0.002 260);
   --card: oklch(0.16 0.02 260);
@@ -177,6 +179,49 @@
 
 @utility animate-marquee {
   animation: marquee 28s linear infinite;
+}
+
+.supporter-viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.supporter-track {
+  display: flex;
+  width: max-content;
+}
+
+.supporter-group {
+  display: flex;
+  gap: 16px;
+  padding-right: 16px;
+  flex-shrink: 0;
+}
+
+.supporter-logo {
+  display: flex;
+  width: 240px;
+  height: 128px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--supporter-surface);
+  padding: 12px;
+}
+
+.supporter-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.supporter-copy { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .supporter-viewport[data-motion="running"] { overflow-x: hidden; }
+  .supporter-copy { display: flex; }
 }
 
 @keyframes pitch-pulse {
