@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Mail, Phone } from "lucide-react";
+import { ClubLogo } from "./ClubLogo";
 
 export function SiteFooter() {
   return (
@@ -8,9 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <span className="font-display text-lg leading-none">S</span>
-            </span>
+            <ClubLogo size="footer" />
             <span className="font-display text-2xl tracking-wider">JK SEPPS</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">

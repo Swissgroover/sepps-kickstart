@@ -6,3 +6,4 @@
 - Named content lives in separate TanStack routes; registration and kit instruction section links use typed Links with hash targets and sticky-header scroll offsets.
 - Homepage supporters come from one browser-safe list with explicit stable IDs; the strip measures its loop width for constant-speed motion and respects reduced motion without GSAP.
 - Supporter logos must be real files in `public/images/supporters` referenced with root-relative URLs so self-hosted deployments need no Lovable asset-serving endpoint.
+- Render the official club mark through shared ClubLogo using a real file in public/images and a root-relative URL, so all shared layouts stay consistent and Vercel serves the image directly.

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ClubLogo } from "./ClubLogo";
 
 const nav = [
   { to: "/", label: "Avaleht" },
@@ -18,10 +19,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="group flex items-center gap-2">
-          <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <span className="font-display text-lg leading-none">S</span>
-            <span className="absolute inset-0 -z-10 rounded-full bg-primary blur-md opacity-60 transition-opacity group-hover:opacity-100" />
-          </span>
+          <ClubLogo />
           <span className="font-display text-xl tracking-wider">JK SEPPS</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">

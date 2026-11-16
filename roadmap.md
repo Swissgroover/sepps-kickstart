@@ -12,3 +12,8 @@ Email delivery was not retested: the preview has no Web3Forms configuration; the
 # Supporter deployment fix
 - [x] Replace Lovable-only logo URLs with real public files and remove pause/resume controls.
 - [x] All six local image requests return 200 on direct load and reload; continuous motion, reduced motion and mobile layout pass. Live Vercel deployment needs redeploying and was not accessed.
+
+# Official club logo
+- [x] Replace shared header/footer and alternate header marks; include official public image and favicon.
+- [x] Real image returns 200 image/webp; all six pages pass at 1280, 757, 390 and 320px, with 40/52px proportionate logos, working mobile menu/home link and no runtime errors or horizontal overflow.
+- [ ] Verify the live Vercel image after redeployment (requires deployment).
